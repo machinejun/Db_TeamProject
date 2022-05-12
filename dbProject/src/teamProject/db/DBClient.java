@@ -1,4 +1,4 @@
-package ch02;
+package teamProject.db;
 
 import java.sql.Connection;
 import java.sql.DriverManager;

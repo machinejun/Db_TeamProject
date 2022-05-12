@@ -11,9 +11,11 @@ import java.util.StringTokenizer;
 
 import javax.swing.JOptionPane;
 
+import teamProject.view.ClientFrame;
+
 public class ClientPro  implements ClientInterface{
 	private Socket socket;
-	//private ClientView view;
+	private ClientFrame view;
 	private InputStream inputStream;
 	private OutputStream outputStream;
 	private DataInputStream dataInputStream;
@@ -22,14 +24,11 @@ public class ClientPro  implements ClientInterface{
 	private static int PORT_NUM = 4000;
 	private int id;
 	
-	public ClientPro() {
-		// TODO Auto-generated constructor stub
+
+	public ClientPro(ClientFrame clientView) {
+		this.view = clientView;
+
 	}
-	
-//	public ClientPro(ClientView clientView) {
-//		//this.view = clientView;
-//
-//	}
 
 
 	public boolean login() {
@@ -144,5 +143,9 @@ public class ClientPro  implements ClientInterface{
 	public void SearchActorInfo() {
 		// TODO Auto-generated method stub
 		
+	}
+	
+	public static void main(String[] args) {
+		new ClientPro(new ClientFrame());
 	}
 }

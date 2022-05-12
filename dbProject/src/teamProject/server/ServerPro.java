@@ -3,19 +3,18 @@ package teamProject.server;
 import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Set;
 import java.util.StringTokenizer;
 import java.util.Vector;
 
 import com.google.gson.Gson;
 
+import teamProject.db.MovieAndActorDao;
+
+
 public class ServerPro{
 	static int USER_ID = 0;
 	private ServerPro mcontext;
-	private ServerServiceDao dao;
+	private MovieAndActorDao dao;
 	private ServerSocket serverSocket;
 	private Socket socket;
 	private static int PORT_NUMBER = 4000;
@@ -23,7 +22,7 @@ public class ServerPro{
 	private Gson gson;
 
 	public ServerPro() {
-		dao = new ServerServiceDao();
+		dao = new MovieAndActorDao();
 		mcontext = this;
 		users = new Vector<User>();
 		gson = new Gson();
@@ -156,5 +155,9 @@ public class ServerPro{
 		}
 		return null;
 
+	}
+	
+	public static void main(String[] args) {
+		new ServerPro();
 	}
 }

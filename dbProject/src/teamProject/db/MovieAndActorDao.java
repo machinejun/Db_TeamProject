@@ -1,4 +1,4 @@
-package teamProject.trash;
+package teamProject.db;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -7,10 +7,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import teamProject.server.DaoInterface;
-import teamProject.server.Dto;
-
-public class ServerServiceDao implements DaoInterface<Dto> {
+public class MovieAndActorDao implements DaoInterface<Dto> {
 	
 	private DBClient dbClient;
 	private Connection connection;
@@ -20,7 +17,7 @@ public class ServerServiceDao implements DaoInterface<Dto> {
 	
 	private List<Dto> resultList = null;
 	
-	public ServerServiceDao() {
+	public MovieAndActorDao() {
 		dbClient = DBClient.getInstance();
 		connection = dbClient.getConnection();
 	}
@@ -37,10 +34,6 @@ public class ServerServiceDao implements DaoInterface<Dto> {
 			while(resultSet.next()) {
 				MovieDto movieDto = new MovieDto();
 				movieDto.setTitle(resultSet.getString("title"));
-				movieDto.setReleaseDate(resultSet.getString("releaseDate"));
-				movieDto.setGenre(resultSet.getString("genre"));
-				movieDto.setStarScore(resultSet.getFloat("starScore"));
-				movieDto.setImageFileName(resultSet.getString("image"));
 				resultList.add(movieDto);
 			}
 			
@@ -96,10 +89,6 @@ public class ServerServiceDao implements DaoInterface<Dto> {
 			while(resultSet.next()) {
 				MovieDto dto = new MovieDto();
 				dto.setTitle(resultSet.getString("title"));
-				dto.setGenre(resultSet.getString("genre"));
-				dto.setStarScore(resultSet.getFloat("starScore"));
-				dto.setReleaseDate(resultSet.getString("releaseDate"));
-				dto.setImageFileName(resultSet.getString("image"));
 				
 				resultList.add(dto);
 			}
@@ -145,14 +134,11 @@ public class ServerServiceDao implements DaoInterface<Dto> {
 				movieDto.setReleaseDate(resultSet.getString("releaseDate"));
 				movieDto.setImageFileName(resultSet.getString("image"));
 				resultList.add(movieDto);
-			}
-			
-			while (resultSet.next()) {
+				
 				actorList.add(resultSet.getString("actorName"));
 				actorList.add(resultSet.getString("roleName"));
 				movieDto.setActorList(actorList);
-			}
-						
+			}		
 			
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -186,7 +172,10 @@ public class ServerServiceDao implements DaoInterface<Dto> {
 			while(resultSet.next()) {
 				actorDto.setActorName(resultSet.getString("actorName"));
 				actorDto.setBirthYear(resultSet.getInt("birthYear"));
+				actorDto.setHeight(resultSet.getInt("height"));
+				actorDto.setWeight(resultSet.getInt("weight"));
 				actorDto.setPartner(resultSet.getString("partner"));
+				actorDto.setImageFileName(resultSet.getString("image"));
 			}
 			
 		} catch (SQLException e) {

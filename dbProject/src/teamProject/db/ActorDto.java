@@ -1,4 +1,4 @@
-package ch02;
+package teamProject.db;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
