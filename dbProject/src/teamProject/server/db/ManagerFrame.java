@@ -1,4 +1,4 @@
-package teamProject.db;
+package teamProject.server.db;
 
 import java.awt.Color;
 import java.awt.Font;

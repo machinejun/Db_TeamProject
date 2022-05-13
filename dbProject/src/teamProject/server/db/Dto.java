@@ -1,4 +1,4 @@
-package teamProject.db;
+package teamProject.server.db;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
