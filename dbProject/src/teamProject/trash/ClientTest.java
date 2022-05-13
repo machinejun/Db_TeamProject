@@ -10,7 +10,6 @@ import java.net.URL;
 
 import com.google.gson.Gson;
 
-import dto.Post;
 
 public class ClientTest {
 	public static void main(String[] args) {

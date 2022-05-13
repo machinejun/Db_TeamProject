@@ -1,8 +1,12 @@
 package teamProject.server;
 
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
 import java.net.Socket;
 
 import javax.print.attribute.standard.Severity;
@@ -10,50 +14,50 @@ import javax.print.attribute.standard.Severity;
 import lombok.Setter;
 
 @Setter
-public class User extends Thread{
-
-	private int id;
-	private Socket userSocket;
+public class User extends Thread {
 	private ServerPro server;
-	
+
+	private int id = 0;
+	private Socket userSocket;
+
 	private DataInputStream dataInputStream;
 	private DataOutputStream dataOutputStream;
-	
-	public User(Socket userSocket, ServerPro server, int id) {
+
+
+	public User(Socket userSocket, ServerPro server) {
 		this.userSocket = userSocket;
 		this.server = server;
-		this.id = id;
+		server.getUsers().add(this);
+
 	}
-	
+
 	public int getUserid() {
 		return id;
 	}
-	
-	
+
 	@Override
 	public void run() {
+		
 		new Thread(new Runnable() {
 			@Override
 			public void run() {
+				System.err.println(id + " User 가 동작");
 				while (true) {
 					try {
 						dataInputStream = new DataInputStream(userSocket.getInputStream());
 						dataOutputStream = new DataOutputStream(userSocket.getOutputStream());
 
 						String msg = dataInputStream.readUTF();
+						System.out.println(msg);
 						server.actionProtocol(msg);
 					} catch (IOException e) {
 						try {
+
 							dataInputStream.close();
 							dataOutputStream.close();
 							break;
 						} catch (IOException e1) {
-							try {
-								dataInputStream.close();
-								dataOutputStream.close();
-							} catch (IOException e2) {
-								e2.printStackTrace();
-							}
+							// TODO Auto-generated catch block
 							e1.printStackTrace();
 						}
 						
@@ -62,11 +66,12 @@ public class User extends Thread{
 				}
 			}
 		}).start();
+
 	}
-	
-	public void sentJson(String msg) {
+
+	public void sentMsg(String msg) {
 		try {
-			dataOutputStream.writeUTF(msg);
+			dataOutputStream.writeUTF(msg + "\n");
 			dataOutputStream.flush();
 		} catch (IOException e) {
 			e.printStackTrace();

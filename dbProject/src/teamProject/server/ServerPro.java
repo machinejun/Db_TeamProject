@@ -6,62 +6,67 @@ import java.net.Socket;
 import java.util.StringTokenizer;
 import java.util.Vector;
 
+import javax.swing.JOptionPane;
+
 import com.google.gson.Gson;
 
+import lombok.Getter;
+import lombok.Setter;
 import teamProject.db.MovieAndActorDao;
 
-
-public class ServerPro{
-	static int USER_ID = 0;
-	private ServerPro mcontext;
+@Getter
+@Setter
+public class ServerPro {
+	private ServerPro mContext;
 	private MovieAndActorDao dao;
 	private ServerSocket serverSocket;
 	private Socket socket;
 	private static int PORT_NUMBER = 4000;
 	private Vector<User> users;
 	private Gson gson;
+	static int COUNT_ID = 1;
 
 	public ServerPro() {
-		dao = new MovieAndActorDao();
-		mcontext = this;
+		mContext = this;
 		users = new Vector<User>();
 		gson = new Gson();
-		connect();
+		startNetwork(PORT_NUMBER);
 	}
 
-	private void connect() {
+	public void startNetwork(int portNumber) {
 		try {
-			serverSocket = new ServerSocket(PORT_NUMBER);
 			System.err.println("서버를 시작합니다.");
-
-			new Thread(new Runnable() {
-
-				@Override
-				public void run() {
-					while (true) {
-						try {
-							socket = serverSocket.accept();
-							User user = new User(socket, mcontext, USER_ID);
-							users.add(user);
-							user.start();
-							StringBuffer jsonString = new StringBuffer();
-							jsonString.append("connect/" + (USER_ID++));
-							user.sentJson(jsonString.toString());
-							loadListMoive();
-							loadListActor();
-							loadRecentMovie();
-						} catch (IOException e) {
-							System.err.println("연결 실패");
-							e.printStackTrace();
-						}
-					}
-
-				}
-			}).start();
+			serverSocket = new ServerSocket(portNumber);
+			linkSomeone();
 		} catch (IOException e) {
-			System.err.println("사용중인 포트입니다.");
+			JOptionPane.showMessageDialog(null, "이미 사용중인 포트입니다.", "Error", JOptionPane.ERROR_MESSAGE);
+			e.printStackTrace();
+		} catch (Exception e) {
+			JOptionPane.showMessageDialog(null, "잘못 입력하셨습니다.", "Error", JOptionPane.ERROR_MESSAGE);
 			e.printStackTrace();
 		}
+
+	}
+
+	public void linkSomeone() {
+		new Thread(new Runnable() {
+
+			@Override
+			public void run() {
+				while (true) {
+					try {
+						socket = serverSocket.accept();
+						User user = new User(socket, mContext);
+						System.err.println("someone connect");
+						user.start();
+
+					} catch (IOException e) {
+						JOptionPane.showMessageDialog(null, "유저 접속 오류", "Error", JOptionPane.ERROR_MESSAGE);
+					}
+				}
+
+			}
+		}).start();
 
 	}
 
@@ -86,14 +91,23 @@ public class ServerPro{
 		int id = Integer.parseInt(protocol[2]);
 		try {
 			switch (protocol[0]) {
-				case "selectM":
-					findUser(id).sentJson(searchMovieInfo(protocol[1]));
-					break;
-				case "selectA":
-					findUser(id).sentJson(searchActorInfo(protocol[1]));
-					break;
-				default:
-					break;
+			case "connect":
+				for (User user : users) {
+					if (user.getUserid() == 0) {
+						user.setId(COUNT_ID++);
+						user.sentMsg("connect/" + user.getUserid());
+					}
+				}
+				updateMovie();
+				break;
+			case "selectM":
+				findUser(id).sentMsg(searchMovieInfo(protocol[1]));
+				break;
+			case "selectA":
+				findUser(id).sentMsg(searchActorInfo(protocol[1]));
+				break;
+			default:
+				break;
 			}
 		} catch (NullPointerException e) {
 			System.err.println("매칭되는 User ID가 없음");
@@ -102,61 +116,55 @@ public class ServerPro{
 
 	public String loadListMoive() {
 		StringBuffer jsonString = new StringBuffer();
-		jsonString.append("connectM/");
-		jsonString.append(gson.toJson(dao.loadListMoive()));
+		jsonString.append("connectM/" + gson.toJson(dao.loadListMoive()));
 		return jsonString.toString();
-	}
 
+	}
 
 	public String loadListActor() {
 		StringBuffer jsonString = new StringBuffer();
-		jsonString.append("connectA/");
-		jsonString.append(gson.toJson(dao.loadListActor()));
+		jsonString.append("connectA/" + gson.toJson(dao.loadListActor()));
 		return jsonString.toString();
-	}
 
+	}
 
 	public String loadRecentMovie() {
 		StringBuffer jsonString = new StringBuffer();
-		jsonString.append("recent/");
-		jsonString.append(gson.toJson(dao.loadRecentMovie()));
+		jsonString.append("recent/" + gson.toJson(dao.loadRecentMovie()));
 		return jsonString.toString();
 
 	}
 
 	public String searchMovieInfo(String movieName) {
 		StringBuffer jsonString = new StringBuffer();
-		jsonString.append("selectM/");
-		jsonString.append(gson.toJson(dao.SearchMovieInfo(movieName)));
+		jsonString.append("selectM/" + gson.toJson(dao.SearchMovieInfo(movieName)));
 		return jsonString.toString();
 	}
 
-
 	public String searchActorInfo(String actorName) {
 		StringBuffer jsonString = new StringBuffer();
-		jsonString.append("selectA/");
-		jsonString.append(gson.toJson(dao.SearchMovieInfo(actorName)));
+		jsonString.append("selectA/" + gson.toJson(dao.SearchMovieInfo(actorName)));
 		return jsonString.toString();
 	}
 
 	public void updateMovie() {
 		for (User user : users) {
-			user.sentJson("connectM/" + loadListMoive());
-			user.sentJson("connectA/" + loadListMoive());
-			user.sentJson("recent/" + loadRecentMovie());
+			user.sentMsg("connectM/" + loadListMoive());
+			user.sentMsg("connectA/" + loadListMoive());
+			user.sentMsg("recent/" + loadRecentMovie());
 		}
 	}
-	
+
 	private User findUser(int id) {
 		for (User u : users) {
 			if (u.getUserid() == id) {
 				return u;
-			} 
+			}
 		}
 		return null;
 
 	}
-	
+
 	public static void main(String[] args) {
 		new ServerPro();
 	}
