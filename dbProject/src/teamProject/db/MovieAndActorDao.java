@@ -118,7 +118,7 @@ public class MovieAndActorDao implements DaoInterface<Dto> {
 		
 		MovieDto movieDto = new MovieDto();		
 		ScoreDto scoreDto = new ScoreDto();
-		RoleDto roleDto = new RoleDto();
+		RoleDto roleDto = null;
 		
 		String selectQuery = "SELECT *, r.roleName\r\n"
 				+ "FROM movie m\r\n"
@@ -134,6 +134,8 @@ public class MovieAndActorDao implements DaoInterface<Dto> {
 			resultSet = preparedStatement.executeQuery();
 			
 			while(resultSet.next()) {
+				roleDto = new RoleDto();
+				
 				movieDto.setTitle(resultSet.getString("title"));
 				movieDto.setGenre(resultSet.getString("genre"));
 				movieDto.setStarScore(resultSet.getFloat("starScore"));
