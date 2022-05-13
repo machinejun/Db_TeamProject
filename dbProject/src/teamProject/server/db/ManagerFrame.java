@@ -37,6 +37,7 @@ public class ManagerFrame extends JFrame {
 	
 	private JLabel titleLabel;
 	private JLabel releaseDateLabel;
+	private JLabel starScoreLabel;
 	private JLabel genreLabel;
 	private JLabel imageFileNameLabel;
 	
@@ -65,9 +66,9 @@ public class ManagerFrame extends JFrame {
 		
 		txtTitle = new JTextField();
 		txtReleaseDate = new JTextField();
+		txtStarScore = new JTextField();
 		txtGenre = new JTextField();
 		txtImageFileName = new JTextField();
-		txtStarScore = new JTextField();
 
 		menuTab = new JTabbedPane(JTabbedPane.TOP);
 
@@ -83,9 +84,11 @@ public class ManagerFrame extends JFrame {
 		releaseDateLabel = new JLabel("개봉 일자 : ");
 		genreLabel = new JLabel("장르 : ");
 		imageFileNameLabel = new JLabel("이미지 파일명 : ");
+		starScoreLabel = new JLabel("평점 : ");
 		
 		titleLabel.setFont(new Font("맑은 고딕", Font.BOLD, 13));
 		releaseDateLabel.setFont(new Font("맑은 고딕", Font.BOLD, 13));
+		starScoreLabel.setFont(new Font("맑은 고딕", Font.BOLD, 13));
 		genreLabel.setFont(new Font("맑은 고딕", Font.BOLD, 13));
 		imageFileNameLabel.setFont(new Font("맑은 고딕", Font.BOLD, 13));
 		
@@ -110,8 +113,9 @@ public class ManagerFrame extends JFrame {
 		
 		txtTitle.setBounds(180, 100, 150, 25);
 		txtReleaseDate.setBounds(180, 140, 150, 25);
-		txtGenre.setBounds(180, 180, 150, 25);
-		txtImageFileName.setBounds(180, 220, 150, 25);
+		txtStarScore.setBounds(180, 180, 150, 25);
+		txtGenre.setBounds(180, 220, 150, 25);
+		txtImageFileName.setBounds(180, 260, 150, 25);
 		
 		insertBtn.setBounds(190, 350, 85, 30);
 		updateBtn.setBounds(200, 200, 85, 30);
@@ -123,9 +127,11 @@ public class ManagerFrame extends JFrame {
 		
 		titleLabel.setBounds(110, 100, 100, 25);
 		releaseDateLabel.setBounds(110, 140, 100, 25);
-		genreLabel.setBounds(140, 180, 100, 25);
-		imageFileNameLabel.setBounds(83, 220, 100, 25);
+		starScoreLabel.setBounds(140, 180, 100, 25);
+		genreLabel.setBounds(140, 220, 100, 25);
+		imageFileNameLabel.setBounds(83, 260, 100, 25);
 		
+		backgroundPanel.setBackground(Color.darkGray);
 		updatePanel.setBorder(new LineBorder(Color.lightGray));
 		deletePanel.setBorder(new LineBorder(Color.lightGray));
 		
@@ -139,12 +145,14 @@ public class ManagerFrame extends JFrame {
 		
 		insertTab.add(txtTitle);
 		insertTab.add(txtReleaseDate);
+		insertTab.add(txtStarScore);
 		insertTab.add(txtGenre);
 		insertTab.add(txtImageFileName);
 		insertTab.add(insertBtn);
 		insertTab.add(titleLabel);
 		insertTab.add(releaseDateLabel);
 		insertTab.add(genreLabel);
+		insertTab.add(starScoreLabel);
 		insertTab.add(imageFileNameLabel);
 		
 		setContentPane(backgroundPanel);

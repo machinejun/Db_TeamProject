@@ -11,8 +11,8 @@ public class MainTest {
 		
 		Dto dto = new Dto();
 		
-		//dto = (MovieDto) dao.SearchMovieInfo("어벤져스");
-		data = dao.loadListActor();
+		dto = (MovieDto) dao.SearchMovieInfo("어벤져스");
+		//data = dao.loadListActor();
 		
 		
 		for (int i = 0; i < data.size(); i++) {
@@ -28,7 +28,7 @@ public class MainTest {
 		}
 		*/
 		
-		//System.out.println(dto.getRoleList().get(2).getActorName());
+		System.out.println(dto);
 	}
 
 }
