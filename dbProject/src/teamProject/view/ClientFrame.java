@@ -168,6 +168,8 @@ public class ClientFrame extends JFrame {
 
 		private void addListener() {
 			searchBtn.addActionListener(this);
+			moviePanel.getBackBtn().addActionListener(this);
+			actorPanel.getBackBtn().addActionListener(this);
 			moviePanel.getSelectActorBtn().addActionListener(this);
 			actorPanel.getSelectMoiveBtn().addActionListener(this);
 			movieList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
@@ -181,13 +183,20 @@ public class ClientFrame extends JFrame {
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			if (e.getSource() == searchBtn) {
-				panel.setVisible(false);
+				
 				if(combo.getSelectedItem().equals("제목")) {
+					panel.setVisible(false);
+					actorPanel.setVisible(false);
+					moviePanel.setVisible(true);
 					add(moviePanel);
 				}else {
+					panel.setVisible(false);
+					moviePanel.setVisible(false);
+					actorPanel.setVisible(true);
 					add(actorPanel);
 				}
 			} else if (e.getSource() == moviePanel.getSelectActorBtn()) {
+				panel.setVisible(false);
 				moviePanel.setVisible(false);
 				actorPanel.setVisible(true);
 				add(actorPanel);
@@ -197,6 +206,7 @@ public class ClientFrame extends JFrame {
 				panel.setVisible(true);
 				add(panel);
 			}else if (e.getSource() == actorPanel.getSelectMoiveBtn()) {
+				panel.setVisible(false);
 				actorPanel.setVisible(false);
 				moviePanel.setVisible(true);
 				add(moviePanel);
