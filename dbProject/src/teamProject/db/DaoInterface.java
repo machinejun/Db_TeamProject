@@ -12,9 +12,9 @@ public interface DaoInterface<T extends Dto> {
 	List<T> loadRecentMovie();
 
 	T SearchMovieInfo(String movieName);
-	// text로 받음 <<< movieDto, 해당 영화에 해당하는 배우(actor) + 배역(role)
+	// text로 받음 <<< movieDto, 해당 영화의 출연 배우(actor) + 배역(role)
 
-	T SearchActorInfo(String actorName);
-	// "" <<< actorDto, 해당 배우 정보 + 배우가 출연한 영화 이름
+	List<T> SearchActorInfo(String actorName);
+	// "" <<< actorDto, 해당 배우 정보(actor) + 배우가 출연한 영화 이름
 
 }

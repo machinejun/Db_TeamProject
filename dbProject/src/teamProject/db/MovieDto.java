@@ -4,7 +4,9 @@ import java.util.ArrayList;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 @Data
 @NoArgsConstructor
@@ -16,12 +18,24 @@ public class MovieDto extends Dto {
 	private float starScore;	
 	private String imageFileName;
 	
-	ArrayList<String> actorList = new ArrayList<String>();
+	MovieActorList movieActorList = new MovieActorList();
+	MovieScoreList movieScoreList = new MovieScoreList();
 	
+	ArrayList<RoleDto> roleList = new ArrayList<RoleDto>();
+	ArrayList<ScoreDto> scoreList = new ArrayList<ScoreDto>();
+
+	@Data
 	class MovieActorList {
-		String acotorName;
+		String actorName;
 		String category;
 		String roleName;
 	}
+
+	@Data
+	class MovieScoreList {
+		int audience;
+		int sales;
+	}
+	
 
 }
