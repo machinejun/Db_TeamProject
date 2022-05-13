@@ -42,7 +42,7 @@ public class MovieDto extends Dto {
 
 }
 =======
-package teamProject.server.db;
+package teamProject.db;
 
 import java.util.ArrayList;
 
