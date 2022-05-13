@@ -18,8 +18,9 @@ public class MovieDto extends Dto {
 	private float starScore;	
 	private String imageFileName;
 	
+	private ScoreDto scoreDto;
+	
 	ArrayList<RoleDto> roleList = new ArrayList<RoleDto>();
-	ArrayList<ScoreDto> scoreList = new ArrayList<ScoreDto>();
 	
 	/*
 	MovieActorList movieActorList = new MovieActorList();

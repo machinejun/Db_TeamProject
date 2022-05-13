@@ -129,8 +129,9 @@ public class MovieAndActorDao implements DaoInterface<Dto> {
 				movieDto.setImageFileName(resultSet.getString("image"));
 
 				roleDto.setActorName(resultSet.getString("actorName"));
-				roleDto.setRoleName(resultSet.getString("category"));
+				roleDto.setRoleName(resultSet.getString("roleName"));
 				roleDto.setCategory(resultSet.getString("category"));
+				movieDto.roleList.add(roleDto);
 				
 				scoreDto.setAudience(resultSet.getInt("audience"));
 				scoreDto.setSales(resultSet.getInt("sales"));
@@ -146,9 +147,9 @@ public class MovieAndActorDao implements DaoInterface<Dto> {
 				movieDto.movieScoreList.setSales(resultSet.getInt("sales"));
 				*/
 				
-			}		
-			movieDto.roleList.add(roleDto);
-			movieDto.scoreList.add(scoreDto);
+			}
+			
+			movieDto.setScoreDto(scoreDto);
 			
 		} catch (SQLException e) {
 			e.printStackTrace();
