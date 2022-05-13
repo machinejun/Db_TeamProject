@@ -1,4 +1,4 @@
-package teamProject.view;
+package teamProject.client.view;
 
 import java.awt.Color;
 import java.awt.Font;
@@ -13,8 +13,10 @@ import javax.swing.JScrollPane;
 import javax.swing.border.LineBorder;
 
 import lombok.Getter;
+import lombok.Setter;
 
 @Getter
+@Setter
 public class ActorPanel extends JPanel{
 	
 	private JLabel imageLabel;
@@ -29,6 +31,7 @@ public class ActorPanel extends JPanel{
 	private JButton selectMoiveBtn;
 	private JButton backBtn;
 	private Font font = new Font("맑은 고딕", Font.BOLD, 13);
+	
 	
 	
 	public ActorPanel() {

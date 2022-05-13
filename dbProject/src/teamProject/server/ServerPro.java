@@ -13,6 +13,7 @@ import com.google.gson.Gson;
 import lombok.Getter;
 import lombok.Setter;
 import teamProject.server.db.MovieAndActorDao;
+import teamProject.server.db.MovieDto;
 
 @Getter
 @Setter
@@ -97,23 +98,25 @@ public class ServerPro implements ServerInterface {
 		protocol[0] = tokenizer.nextToken();
 		protocol[1] = tokenizer.nextToken();
 		protocol[2] = tokenizer.nextToken();
-		int id = Integer.parseInt(protocol[2]);
+		System.out.println(protocol[2]);
+		int id = Integer.parseInt(protocol[2].replace("\n", ""));
+	
 		try {
 			switch (protocol[0]) {
 			case "connect":
 				for (User user : users) {
 					if (user.getUserid() == 0) {
 						user.setId(COUNT_ID++);
-						user.sentMsg("connect/" + user.getUserid());
+						user.sentMsg("connect@" + user.getUserid());
 					}
 				}
 				broadCast();
 				break;
 			case "selectM":
-				findUser(id).sentMsg(searchMovieInfo(protocol[1]));
+				findUser(id).sentMsg(searchMovieInfo(protocol[1] , id));
 				break;
 			case "selectA":
-				findUser(id).sentMsg(searchActorInfo(protocol[1]));
+				findUser(id).sentMsg(searchActorInfo(protocol[1], id));
 				break;
 			default:
 				break;
@@ -127,14 +130,14 @@ public class ServerPro implements ServerInterface {
 	@Override
 	public String loadListMoive() {
 		StringBuffer jsonString = new StringBuffer();
-		jsonString.append("loadM/" + gson.toJson(dao.loadListMoive()));
+		jsonString.append("loadM@" + gson.toJson(dao.loadListMoive()));
 		return jsonString.toString();
 	}
 
 	@Override
 	public String loadListActor() {
 		StringBuffer jsonString = new StringBuffer();
-		jsonString.append("loadA/" + gson.toJson(dao.loadListActor()));
+		jsonString.append("loadA@" + gson.toJson(dao.loadListActor()));
 		return jsonString.toString();
 
 	}
@@ -142,22 +145,26 @@ public class ServerPro implements ServerInterface {
 	@Override
 	public String loadRecentMovie() {
 		StringBuffer jsonString = new StringBuffer();
-		jsonString.append("loadR/" + gson.toJson(dao.loadRecentMovie()));
+		jsonString.append("loadR@" + gson.toJson(dao.loadRecentMovie()));
 		return jsonString.toString();
 
 	}
 
 	@Override
-	public String searchMovieInfo(String movieName) {
+	public String searchMovieInfo(String movieName, int id) {
 		StringBuffer jsonString = new StringBuffer();
-		jsonString.append("selectM/" + gson.toJson(dao.SearchMovieInfo(movieName)));
+		MovieDto dto = dao.SearchMovieInfo(movieName);
+		sentImageUrl(dto.getImageFileName(), id);
+		dto.setImageFileName("");
+		jsonString.append("selectM@" + gson.toJson(dto));
+		
 		return jsonString.toString();
 	}
 
 	@Override
-	public String searchActorInfo(String actorName) {
+	public String searchActorInfo(String actorName, int id) {
 		StringBuffer jsonString = new StringBuffer();
-		jsonString.append("selectA/" + gson.toJson(dao.SearchMovieInfo(actorName)));
+		jsonString.append("selectA@" + gson.toJson(dao.SearchMovieInfo(actorName)));
 		return jsonString.toString();
 	}
 
@@ -177,6 +184,11 @@ public class ServerPro implements ServerInterface {
 		}
 		return null;
 
+	}
+	
+	private String sentImageUrl(String url, int id) {
+		findUser(id).sentMsg("imageM@" + url);
+		return "";
 	}
 
 	public static void main(String[] args) {

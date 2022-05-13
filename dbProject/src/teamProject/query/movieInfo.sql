@@ -9,7 +9,7 @@ CREATE TABLE movie (
     releaseDate DATE NOT NULL,
     starScore FLOAT,
     genre VARCHAR(10),
-    image VARCHAR(30)
+    image text
 );
 
 DROP TABLE score;
@@ -57,21 +57,24 @@ CREATE TABLE actor(
     height INT NOT NULL,
     weight INT NOT NULL,
     partner VARCHAR(20),
-    image varchar(20)
+    image text
 );
 
 SELECT * FROM movie;
 delete from movie;
-INSERT INTO movie VALUES ('반지의 제왕', '2001-12-31', 9.84, '판타지', "반지의 제왕.jpg");
-INSERT INTO movie VALUES ('아이언맨', '2008-04-30', 8.4, '액션', "아이언맨.jpg");
-INSERT INTO movie VALUES ('극한직업', '2019-01-23', 9.2, '코미디', "극한직업.jpg");
-INSERT INTO movie VALUES ('범죄도시', '2017-10-03', 9.28, '액션', "범죄도시.jpg");
-INSERT INTO movie VALUES ('토르: 라그나로크', '2017-10-25', 9.03, '액션', "토르.png");
-INSERT INTO movie VALUES ('베테랑', '2015-08-05', 9.24, '액션', "베테랑.jpg");
-INSERT INTO movie VALUES ('바람', '2009-11-26', 9.28, '드라마', "바람.jpg");
-INSERT INTO movie VALUES ('히말라야', '2015-12-16', 8.67, '드라마', "히말라야.jpg");
-INSERT INTO movie VALUES ('부산행', '2016-07-20', 8.6, '액션', "부산행.jpg");
-INSERT INTO movie VALUES ('어벤져스', '2012-04-26', 8.8, '액션', "어벤져스.jpg");
+
+update movie set image = 'https://search.pstatic.net/common?type=o&size=174x242&quality=85&direct=true&src=https%3A%2F%2Fs.pstatic.net%2Fmovie.phinf%2F20200612_248%2F1591937633750Vvyr6_JPEG%2Fmovie_image.jpg%3Ftype%3Dw640_2' where title = '부산행';
+
+INSERT INTO movie VALUES ('반지의 제왕', '2001-12-31', 9.84, '판타지', "https://search.pstatic.net/common?type=o&size=174x242&quality=85&direct=true&src=https%3A%2F%2Fs.pstatic.net%2Fmovie.phinf%2F20210308_290%2F16151786976685f4Mv_JPEG%2Fmovie_image.jpg%3Ftype%3Dw640_2");
+INSERT INTO movie VALUES ('아이언맨', '2008-04-30', 8.4, '액션', "https://search.pstatic.net/common?type=o&size=174x242&quality=85&direct=true&src=https%3A%2F%2Fs.pstatic.net%2Fmovie.phinf%2F20111222_37%2F1324501632182vbSoY_JPEG%2Fmovie_image.jpg%3Ftype%3Dw640_2");
+INSERT INTO movie VALUES ('극한직업', '2019-01-23', 9.2, '코미디', "https://search.pstatic.net/common?type=o&size=174x242&quality=85&direct=true&src=https%3A%2F%2Fs.pstatic.net%2Fmovie.phinf%2F20190116_206%2F1547615429111dINWj_JPEG%2Fmovie_image.jpg%3Ftype%3Dw640_2");
+INSERT INTO movie VALUES ('범죄도시', '2017-10-03', 9.28, '액션', "https://search.pstatic.net/common?type=o&size=174x242&quality=85&direct=true&src=https%3A%2F%2Fs.pstatic.net%2Fmovie.phinf%2F20220420_22%2F16504370785559wHfw_JPEG%2Fmovie_image.jpg%3Ftype%3Dw640_2");
+INSERT INTO movie VALUES ('토르: 라그나로크', '2017-10-25', 9.03, '액션', "https://search.pstatic.net/common?type=o&size=174x242&quality=85&direct=true&src=https%3A%2F%2Fs.pstatic.net%2Fmovie.phinf%2F20170928_85%2F1506564710105ua5fS_PNG%2Fmovie_image.jpg%3Ftype%3Dw640_2");
+INSERT INTO movie VALUES ('베테랑', '2015-08-05', 9.24, '액션', "https://search.pstatic.net/common?type=o&size=174x242&quality=85&direct=true&src=https%3A%2F%2Fs.pstatic.net%2Fmovie.phinf%2F20150622_131%2F14349365467550iQnC_JPEG%2Fmovie_image.jpg%3Ftype%3Dw640_2");
+INSERT INTO movie VALUES ('바람', '2009-11-26', 9.28, '드라마', "https://search.pstatic.net/common?type=o&size=174x242&quality=85&direct=true&src=https%3A%2F%2Fs.pstatic.net%2Fmovie.phinf%2F20111223_242%2F1324597990008Nj67F_JPEG%2Fmovie_image.jpg%3Ftype%3Dw640_2");
+INSERT INTO movie VALUES ('히말라야', '2015-12-16', 8.67, '드라마', "https://search.pstatic.net/common?type=o&size=174x242&quality=85&direct=true&src=https%3A%2F%2Fs.pstatic.net%2Fmovie.phinf%2F20151119_280%2F1447895561914GiahL_JPEG%2Fmovie_image.jpg%3Ftype%3Dw640_2");
+INSERT INTO movie VALUES ('부산행', '2016-07-20', 8.6, '액션', "https://search.pstatic.net/common?type=o&size=174x242&quality=85&direct=true&src=https%3A%2F%2Fs.pstatic.net%2Fmovie.phinf%2F20200612_248%2F1591937633750Vvyr6_JPEG%2Fmovie_image.jpg%3Ftype%3Dw640_2\n");
+INSERT INTO movie VALUES ('어벤져스', '2012-04-26', 8.8, '액션', "https://search.pstatic.net/common?type=o&size=174x242&quality=85&direct=true&src=https%3A%2F%2Fs.pstatic.net%2Fmovie.phinf%2F20120426_172%2F1335428116411i030K_JPEG%2Fmovie_image.jpg%3Ftype%3Dw640_2");
 
 -- 추가 데이터
 INSERT INTO movie VALUES ('82년생 김지영', '2019-10-23', 9.13, '드라마', "82년생 김지영.jpg");

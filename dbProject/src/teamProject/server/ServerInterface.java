@@ -5,8 +5,8 @@ public interface ServerInterface {
 	String loadListMoive();
 	String loadListActor();
 	String loadRecentMovie();
-	String searchMovieInfo(String movieName);
-	String searchActorInfo(String actorName);
+	String searchMovieInfo(String movieName, int id);
+	String searchActorInfo(String actorName, int id);
 	
 	
 }

@@ -1,8 +1,15 @@
-package teamProject.view;
+package teamProject.client.view;
 
 import java.awt.Color;
 import java.awt.Font;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.util.Vector;
 
+import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
@@ -12,8 +19,12 @@ import javax.swing.JScrollPane;
 import javax.swing.border.LineBorder;
 
 import lombok.Getter;
+import lombok.Setter;
+import teamProject.client.MovieDto;
+import teamProject.client.RoleDto;
 
 @Getter
+@Setter
 public class MoviePanel extends JPanel {
 
 	private JLabel imageLabel;
@@ -29,10 +40,55 @@ public class MoviePanel extends JPanel {
 	private JButton selectActorBtn;
 	private JButton backBtn;
 	private Font font = new Font("맑은 고딕", Font.BOLD, 13);
+	
+	// 패널 데이터
+	private MovieDto movie;
+	private String star;
+	private String audience;
+	private String sales;
+	
 
 	public MoviePanel() {
 		initData();
 		setVisible(true);
+	}
+	
+	public void insertImage(String url) {
+		System.out.println(url);
+		try {
+			//URL url = new URL(movie.getImageFileName());
+			URL imgRrl = new URL(url);
+			BufferedImage img = ImageIO.read(imgRrl);
+			ImageIcon imgIcon = new ImageIcon();
+			imgIcon.setImage(img);
+			imageLabel.setIcon(imgIcon);
+			
+		} catch (MalformedURLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
+	public void loadMovieinfo(MovieDto movie) {
+		
+		
+		titleLabel.setText("영화 제목 : " + movie.getTitle());
+		genreLabel.setText("장    르 : " + movie.getGenre());
+		yearLabel.setText( "개봉 연도 : " + movie.getReleaseDate());
+		starLabel.setText( "별    점 : " + movie.getStarScore());
+		audienceLabel.setText("관객   수 : " + movie.getScoreDto().getAudience());
+		salesLabel.setText("매 출 액 : " + movie.getScoreDto().getSales());
+		
+		Vector<String> list = new Vector<String>();
+		for (RoleDto role : movie.getRoleList()) {
+			list.add(role.getRoleName() + " / " + role.getActorName());
+		}
+		roleList.setListData(list);
+		
+		
 	}
 
 	private void initData() {
@@ -45,38 +101,32 @@ public class MoviePanel extends JPanel {
 		imageLabel.setBounds(100, 50, 200, 286);
 		add(imageLabel);
 
-		String title = "영화 제목";
-		titleLabel = new JLabel("제목 : " + title);
+		titleLabel = new JLabel();
 		titleLabel.setFont(font);
 		titleLabel.setBounds(350, 50, 250, 30);
 		add(titleLabel);
 
-		String genre = "영화 장르";
-		genreLabel = new JLabel("장르 : " + genre);
+		genreLabel = new JLabel();
 		genreLabel.setFont(font);
 		genreLabel.setBounds(350, 100, 250, 30);
 		add(genreLabel);
 
-		String year = "개봉연도";
-		yearLabel = new JLabel("개봉연도 : " + year);
+		yearLabel = new JLabel();
 		yearLabel.setFont(font);
 		yearLabel.setBounds(350, 150, 250, 30);
 		add(yearLabel);
 
-		String star = "평점";
-		starLabel = new JLabel("평점 : " + star);
+		starLabel = new JLabel();
 		starLabel.setFont(font);
 		starLabel.setBounds(350, 200, 250, 30);
 		add(starLabel);
 
-		String audience = "관객 수";
-		audienceLabel = new JLabel("관객 수 : " + audience);
+		audienceLabel = new JLabel();
 		audienceLabel.setFont(font);
 		audienceLabel.setBounds(350, 250, 250, 30);
 		add(audienceLabel);
 
-		String sales = "매출액";
-		salesLabel = new JLabel("매출액 : " + sales);
+		salesLabel = new JLabel();
 		salesLabel.setFont(font);
 		salesLabel.setBounds(350, 300, 250, 30);
 		add(salesLabel);

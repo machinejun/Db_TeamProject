@@ -4,10 +4,10 @@ import java.util.List;
 
 public interface ClientInterface {
 
-	void loadListMoive(List<Dto> movielist);
-	void loadListActor(List<Dto> acotrlist);
-	void loadRecentMovie(List<Dto> movielist);
-	void SearchMovieInfo(String movieName);
-	void SearchActorInfo(String actorName);
+	void loadListMoive(String jsonn);
+	void loadListActor(String json);
+	void loadRecentMovie(String json);
+	void SearchMovieInfo(String json);
+	void SearchActorInfo(String json);
 	void sentMsg(String msg);
 }

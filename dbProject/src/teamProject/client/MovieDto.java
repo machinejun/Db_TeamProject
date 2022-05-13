@@ -5,10 +5,12 @@ import java.util.ArrayList;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
+@ToString
 public class MovieDto extends Dto {
 
 	private String releaseDate;
@@ -16,8 +18,9 @@ public class MovieDto extends Dto {
 	private float starScore;	
 	private String imageFileName;
 	
+	private ScoreDto scoreDto;
+	
 	ArrayList<RoleDto> roleList = new ArrayList<RoleDto>();
-	ArrayList<ScoreDto> scoreList = new ArrayList<ScoreDto>();
 	
 	/*
 	MovieActorList movieActorList = new MovieActorList();

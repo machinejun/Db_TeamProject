@@ -98,7 +98,7 @@ public class MovieAndActorDao implements DaoInterface<Dto> {
 
 	// 영화 제목 검색 -> 영화 정보(영화 성적 포함) / 배우 이름 + 배역 이름
 	@Override
-	public Dto SearchMovieInfo(String movieName) {
+	public MovieDto SearchMovieInfo(String movieName) {
 		
 		resultList = new ArrayList<Dto>();
 		
