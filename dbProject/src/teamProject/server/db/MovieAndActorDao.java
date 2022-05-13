@@ -33,9 +33,9 @@ public class MovieAndActorDao implements DaoInterface<Dto> {
 			resultSet = preparedStatement.executeQuery();
 			
 			while(resultSet.next()) {
-				MovieDto movieDto = new MovieDto();
-				movieDto.setTitle(resultSet.getString("title"));
-				resultList.add(movieDto);
+				Dto dto = new Dto();
+				dto.setTitle(resultSet.getString("title"));
+				resultList.add(dto);
 			}
 			
 
@@ -57,10 +57,10 @@ public class MovieAndActorDao implements DaoInterface<Dto> {
 			resultSet = preparedStatement.executeQuery();
 			
 			while(resultSet.next()) {
-				ActorDto actorDto = new ActorDto();
-				actorDto.setActorName(resultSet.getString("actorName"));
+				Dto dto = new Dto();
+				dto.setActorName(resultSet.getString("actorName"));
 				
-				resultList.add(actorDto);
+				resultList.add(dto);
 			}
 
 		} catch (SQLException e) {
@@ -83,7 +83,7 @@ public class MovieAndActorDao implements DaoInterface<Dto> {
 			resultSet = preparedStatement.executeQuery();
 			
 			while(resultSet.next()) {
-				MovieDto dto = new MovieDto();
+				Dto dto = new Dto();
 				dto.setTitle(resultSet.getString("title"));
 				
 				resultList.add(dto);
