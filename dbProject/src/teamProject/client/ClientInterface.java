@@ -2,10 +2,10 @@ package teamProject.client;
 
 public interface ClientInterface {
 
-	void loadListMoive();
-	void loadListActor();
-	void loadRecentMovie();
-	void SearchMovieInfo();
-	void SearchActorInfo();
+	void loadListMoive(String joson);
+	void loadListActor(String joson);
+	void loadRecentMovie(String joson);
+	void SearchMovieInfo(String joson);
+	void SearchActorInfo(String joson);
 
 }

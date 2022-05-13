@@ -1,4 +1,4 @@
-package teamProject.db;
+package teamProject.server.db;
 
 import java.awt.Color;
 import java.awt.Font;
@@ -38,7 +38,7 @@ public class ManagerFrame extends JFrame {
 	private JLabel titleLabel;
 	private JLabel releaseDateLabel;
 	private JLabel genreLabel;
-//	private JLabel imag
+	private JLabel imageFileNameLabel;
 	
 	private ScrollPane scrollPane;
 	
@@ -83,6 +83,7 @@ public class ManagerFrame extends JFrame {
 		titleLabel.setFont(new Font("맑은 고딕", Font.BOLD, 13));
 		releaseDateLabel.setFont(new Font("맑은 고딕", Font.BOLD, 13));
 		genreLabel.setFont(new Font("맑은 고딕", Font.BOLD, 13));
+		imageFileNameLabel.setFont(new Font("맑은 고딕", Font.BOLD, 13));
 		
 		movieList = new JList<String>();
 		scrollPane = new ScrollPane();
@@ -117,6 +118,7 @@ public class ManagerFrame extends JFrame {
 		titleLabel.setBounds(110, 100, 100, 25);
 		releaseDateLabel.setBounds(110, 140, 100, 25);
 		genreLabel.setBounds(137, 180, 100, 25);
+		imageFileNameLabel.setBounds(getBounds());
 		
 		updatePanel.setBorder(new LineBorder(Color.lightGray));
 		deletePanel.setBorder(new LineBorder(Color.lightGray));

@@ -52,7 +52,7 @@ public class ServerTest {
 					
 					
 					
-					BufferedWriter bufferedWriter = new BufferedWriter(new OutputStreamWriter(clinetSocket.getOutputStream(), StandardCharsets.UTF_8));
+					BufferedWriter bufferedWriter = new BufferedWriter(new OutputStreamWriter(clinetSocket.getOutputStream()));
 					bufferedWriter.write("HTTP/1.1 200 OK\r\n");
 					bufferedWriter.write("\r\n");
 					bufferedWriter.write((jobject + "\r\n"));
