@@ -68,12 +68,20 @@ public class ServerPro{
 	/*
 	 * protocol
 	 * 
-	 * server <<< client 메세지 recent/ selectM/moviename/id selectA/actorname/id
+	 * server <<< client 메세지 
+	 * recent/ 
+	 * selectM/moviename/id 
+	 * selectA/actorname/id
 	 * 
 	 * server >>> client 메세지
 	 * 
-	 * connectM/{무비이름리스트} connectA/{배우이름리스트} recent/json{무비이름리스트} selectM/json[무비정보]
-	 * selectA/json[배우정보] updateM/json{무비 이름 리스트} updateA/json{배우 이름 리스트}
+	 * connectM/{무비이름리스트} 
+	 * connectA/{배우이름리스트} 
+	 * recent/json{무비이름리스트} 
+	 * selectM/json[무비정보]
+	 * selectA/json[배우정보] 
+	 * updateM/json{무비 이름 리스트} 
+	 * updateA/json{배우 이름 리스트}
 	 * 
 	 */
 

@@ -35,7 +35,6 @@ public class ClientFrame extends JFrame {
 	//
 	String[] choice = { "제목", "배우" };
 
-
 	public ClientFrame() {
 		SetMainPanel();
 		initData();
@@ -49,14 +48,14 @@ public class ClientFrame extends JFrame {
 		setSize(800, 800);
 		setLayout(null);
 		setLocationRelativeTo(null);
-		getContentPane().setBackground(Color.black);
+		getContentPane().setBackground(Color.darkGray);
 
 		title = new JLabel("MOVIEWIKI");
 		title.setBounds(20, 10, 400, 50);
 		title.setFont(new Font("맑은 고딕", Font.BOLD, 40));
 		title.setOpaque(true);
 		title.setForeground(Color.pink);
-		title.setBackground(Color.black);
+		title.setBackground(Color.darkGray);
 		add(title);
 	}
 
@@ -66,7 +65,7 @@ public class ClientFrame extends JFrame {
 		panel.setBorder(new LineBorder(Color.white));
 		panel.setBounds(20, 70, 730, 670);
 		panel.setLayout(null);
-		panel.setBackground(Color.black);
+		panel.setBackground(Color.darkGray);
 		add(panel);
 
 		// 영화 리스트를 가진 탭
@@ -120,17 +119,13 @@ public class ClientFrame extends JFrame {
 
 	}
 
-
-
 	public class Listener implements ActionListener {
-		
-		
+
 		MoviePanel moviePanel = new MoviePanel();
 		ActorPanel actorPanel = new ActorPanel();
 
 		public Listener() {
 			addListener();
-			
 
 		}
 
@@ -144,20 +139,20 @@ public class ClientFrame extends JFrame {
 		public void actionPerformed(ActionEvent e) {
 			if (e.getSource() == searchBtn) {
 				panel.setVisible(false);
-				//movieFrame();
+				// movieFrame();
 				add(moviePanel);
-			} else if(e.getSource() == moviePanel.getMovieBtn()){
+			} else if (e.getSource() == moviePanel.getMovieBtn()) {
 				System.out.println("=");
 				moviePanel.setVisible(false);
 				actorPanel.setVisible(true);
 				add(actorPanel);
-				
-			} else if(e.getSource() == actorPanel.getActorBtn()) {
+
+			} else if (e.getSource() == actorPanel.getActorBtn()) {
 				actorPanel.setVisible(false);
 				moviePanel.setVisible(true);
 				add(moviePanel);
 			}
-			
+
 		}
 
 	}
