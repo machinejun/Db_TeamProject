@@ -65,13 +65,6 @@ public class MovieAndActorDao implements DaoInterface<Dto> {
 
 		} catch (SQLException e) {
 			e.printStackTrace();
-		} finally {
-			try {
-				connection.close();
-				preparedStatement.close();
-			} catch (SQLException e) {
-				e.printStackTrace();
-			}
 		}
 		
 		return resultList;
@@ -98,13 +91,6 @@ public class MovieAndActorDao implements DaoInterface<Dto> {
 
 		} catch (SQLException e) {
 			e.printStackTrace();
-		} finally {
-			try {
-				connection.close();
-				preparedStatement.close();
-			} catch (SQLException e) {
-				e.printStackTrace();
-			}
 		}
 		
 		return resultList;
@@ -166,13 +152,6 @@ public class MovieAndActorDao implements DaoInterface<Dto> {
 			
 		} catch (SQLException e) {
 			e.printStackTrace();
-		} finally {
-			try {
-				connection.close();
-				preparedStatement.close();
-			} catch (SQLException e) {
-				e.printStackTrace();
-			}
 		}
 		
 		return movieDto;
@@ -224,14 +203,7 @@ public class MovieAndActorDao implements DaoInterface<Dto> {
 			
 		} catch (SQLException e) {
 			e.printStackTrace();
-		} finally {
-			try {
-				connection.close();
-				preparedStatement.close();
-			} catch (SQLException e) {
-				e.printStackTrace();
-			}
-		}
+		} 
 		
 		return resultList;
 	}
