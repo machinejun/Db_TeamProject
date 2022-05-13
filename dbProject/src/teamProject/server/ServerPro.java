@@ -3,7 +3,6 @@ package teamProject.server;
 import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
-import java.util.ArrayList;
 import java.util.StringTokenizer;
 import java.util.Vector;
 
@@ -13,9 +12,7 @@ import com.google.gson.Gson;
 
 import lombok.Getter;
 import lombok.Setter;
-import teamProject.server.db.Dto;
 import teamProject.server.db.MovieAndActorDao;
-import teamProject.server.db.MovieDto;
 
 @Getter
 @Setter

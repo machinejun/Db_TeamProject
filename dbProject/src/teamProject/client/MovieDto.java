@@ -1,12 +1,10 @@
-package teamProject.server.db;
+package teamProject.client;
 
 import java.util.ArrayList;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.Getter;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
 
 @Data
 @NoArgsConstructor
@@ -17,6 +15,7 @@ public class MovieDto extends Dto {
 	private String genre;	
 	private float starScore;	
 	private String imageFileName;
+	
 	ArrayList<RoleDto> roleList = new ArrayList<RoleDto>();
 	ArrayList<ScoreDto> scoreList = new ArrayList<ScoreDto>();
 	

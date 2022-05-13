@@ -26,7 +26,8 @@ public class ActorPanel extends JPanel{
 	private JLabel movieLabel;
 	private JList movieList;
 	private JScrollPane scrollPane;
-	private JButton actorBtn;
+	private JButton selectMoiveBtn;
+	private JButton backBtn;
 	private Font font = new Font("맑은 고딕", Font.BOLD, 13);
 	
 	
@@ -85,9 +86,13 @@ public class ActorPanel extends JPanel{
 		scrollPane = new JScrollPane();
 		movieList.add(scrollPane);
 		
-		actorBtn = new JButton("검색");
-		actorBtn.setBounds(570, 600, 80, 20);
-		add(actorBtn);
+		selectMoiveBtn = new JButton("검색");
+		selectMoiveBtn.setBounds(570, 600, 80, 20);
+		add(selectMoiveBtn);
+		
+		backBtn = new JButton("뒤로가기");
+		backBtn.setBounds(480,600, 80,20);
+		add(backBtn);
 		
 		
 	}

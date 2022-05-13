@@ -2,8 +2,10 @@ package teamProject.view;
 
 import java.awt.Color;
 import java.awt.Font;
+import java.awt.ScrollPane;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Vector;
 
 import javax.swing.JButton;
 import javax.swing.JComboBox;
@@ -13,12 +15,16 @@ import javax.swing.JList;
 import javax.swing.JPanel;
 import javax.swing.JTabbedPane;
 import javax.swing.JTextField;
+import javax.swing.ListSelectionModel;
 import javax.swing.border.LineBorder;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
+import teamProject.client.ClientPro;
+
 
 public class ClientFrame extends JFrame {
-
+	
 	private Listener listener;
-
 	private JPanel panel;
 	private JPanel moviePanel;
 	private JPanel actorPanel;
@@ -32,12 +38,20 @@ public class ClientFrame extends JFrame {
 	private JTextField textField;
 	private JLabel title;
 	private Font font = new Font("맑은 고딕", Font.BOLD, 13);
+	private Font listfont = new Font("맑은 고딕", Font.BOLD, 25);
 	//
+	private Vector<String> moviename = new Vector<String>();
+	private Vector<String> actorname = new Vector<String>();
+	private Vector<String> recentMoviename = new Vector<String>();
+
 	String[] choice = { "제목", "배우" };
+	
+	private ClientPro clientpro;
 
 	public ClientFrame() {
 		SetMainPanel();
 		initData();
+		this.clientpro = new ClientPro(this);
 		listener = new Listener();
 		setVisible(true);
 	}
@@ -60,6 +74,9 @@ public class ClientFrame extends JFrame {
 	}
 
 	private void initData() {
+		movieList = new JList<String>();
+		actorList = new JList<String>();
+		recentMovieList = new JList<String>();
 
 		panel = new JPanel();
 		panel.setBorder(new LineBorder(Color.white));
@@ -72,36 +89,37 @@ public class ClientFrame extends JFrame {
 		tap = new JTabbedPane(JTabbedPane.TOP);
 		tap.setBounds(15, 20, 700, 590);
 		panel.add(tap);
-		tap.addTab("영화 리스트", null, moviePanel, null);
+
 		tap.setFont(font);
+
 		moviePanel = new JPanel();
 		moviePanel.setLayout(null);
 
-		movieList = new JList();
-		movieList.setFont(font);
-		movieList.setBounds(10, 10, 680, 540);
-		moviePanel.add(movieList);
+		movieList.setFont(listfont);
+		ScrollPane pm = new ScrollPane();
+		pm.setBounds(10, 10, 680, 540);
+		pm.add(movieList);
+		moviePanel.add(pm);
+		tap.addTab("영화 리스트", moviePanel);
 
 		// 배우 리스트를 가진 탭
 		actorPanel = new JPanel();
-		tap.addTab("배우 리스트", null, actorPanel, null);
 		actorPanel.setLayout(null);
-
-		actorList = new JList();
-		actorList.setFont(font);
-		actorList.setBounds(10, 10, 680, 540);
-		actorPanel.add(actorList);
+		actorList.setFont(listfont);
+		ScrollPane pa = new ScrollPane();
+		pa.setBounds(10, 10, 680, 540);
+		pa.add(actorList);
+		actorPanel.add(pa);
+		tap.addTab("배우 리스트", actorPanel);
 
 		// 최신 영화 리스트를 가진 탭
 		recentMoviePanel = new JPanel();
-		tap.addTab("최신 영화 리스트", null, recentMoviePanel, null);
-		recentMoviePanel.setLayout(null);
 
-		recentMovieList = new JList();
-		recentMovieList.setFont(font);
+		recentMoviePanel.setLayout(null);
+		recentMovieList.setFont(listfont);
 		recentMovieList.setBounds(10, 10, 680, 540);
 		recentMoviePanel.add(recentMovieList);
-
+		tap.addTab("최신 영화 리스트", recentMoviePanel);
 		searchBtn = new JButton("검색");
 		searchBtn.setFont(font);
 		searchBtn.setBounds(610, 630, 100, 25);
@@ -119,8 +137,26 @@ public class ClientFrame extends JFrame {
 
 	}
 
-	public class Listener implements ActionListener {
+	public void movielistupdate(Vector<String> list) {
+		System.out.println("movie update");
+		moviename = list;
+		movieList.setListData(moviename);
+	}
 
+	public void actorlistupdate(Vector<String> list) {
+		System.out.println("acor update");
+		actorname = list;
+		actorList.setListData(actorname);
+	}
+
+	public void rMovielistupdate(Vector<String> list) {
+		System.out.println("mo update");
+		recentMoviename = list;
+		recentMovieList.setListData(recentMoviename);
+	}
+	
+
+	public class Listener implements ActionListener, ListSelectionListener {
 		MoviePanel moviePanel = new MoviePanel();
 		ActorPanel actorPanel = new ActorPanel();
 
@@ -128,37 +164,72 @@ public class ClientFrame extends JFrame {
 			addListener();
 
 		}
+	
 
 		private void addListener() {
 			searchBtn.addActionListener(this);
-			moviePanel.getMovieBtn().addActionListener(this);
-			actorPanel.getActorBtn().addActionListener(this);
+			moviePanel.getSelectActorBtn().addActionListener(this);
+			actorPanel.getSelectMoiveBtn().addActionListener(this);
+			movieList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+			movieList.addListSelectionListener(this);
+			actorList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+			actorList.addListSelectionListener(this);
+			recentMovieList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+			recentMovieList.addListSelectionListener(this);
 		}
 
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			if (e.getSource() == searchBtn) {
 				panel.setVisible(false);
-				// movieFrame();
-				add(moviePanel);
-			} else if (e.getSource() == moviePanel.getMovieBtn()) {
-				System.out.println("=");
+				if(combo.getSelectedItem().equals("제목")) {
+					add(moviePanel);
+				}else {
+					add(actorPanel);
+				}
+			} else if (e.getSource() == moviePanel.getSelectActorBtn()) {
 				moviePanel.setVisible(false);
 				actorPanel.setVisible(true);
 				add(actorPanel);
-
-			} else if (e.getSource() == actorPanel.getActorBtn()) {
+			} else if (e.getSource() == moviePanel.getBackBtn()) {
+				actorPanel.setVisible(false);
+				moviePanel.setVisible(false);
+				panel.setVisible(true);
+				add(panel);
+			}else if (e.getSource() == actorPanel.getSelectMoiveBtn()) {
 				actorPanel.setVisible(false);
 				moviePanel.setVisible(true);
 				add(moviePanel);
+			}else if (e.getSource() == actorPanel.getBackBtn()) {
+				actorPanel.setVisible(false);
+				moviePanel.setVisible(false);
+				panel.setVisible(true);
+				add(panel);
 			}
 
 		}
 
-	}
+		@Override
+		public void valueChanged(ListSelectionEvent e) {
+			if (e.getSource().equals(movieList)) {
+				System.out.println("movie");
+				int i = movieList.getSelectedIndex();
+				textField.setText(moviename.get(i));
+			}else if(e.getSource().equals(actorList)){
+				System.out.println("actor");
+				int i = actorList.getSelectedIndex();
+				textField.setText(actorname.get(i));
+			}else if(e.getSource().equals(recentMovieList)) {
+				System.out.println("recentMovieList");
+				int i = actorList.getSelectedIndex();
+				textField.setText(recentMoviename.get(i));
+			}
+		}
 
+	}
+	
 	public static void main(String[] args) {
+
 		new ClientFrame();
 	}
-
 }

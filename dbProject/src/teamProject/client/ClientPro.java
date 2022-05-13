@@ -1,23 +1,26 @@
 package teamProject.client;
 
-import java.io.BufferedReader;
-import java.io.BufferedWriter;
+
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.io.OutputStream;
-import java.io.OutputStreamWriter;
+import java.lang.reflect.Type;
 import java.net.Socket;
 import java.net.SocketException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.StringTokenizer;
+import java.util.Vector;
 
 import javax.swing.JOptionPane;
+
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 
 import teamProject.view.ClientFrame;
 
 public class ClientPro  implements ClientInterface{
+	
 	private Socket socket;
 	private ClientFrame view;
 	private static String IP = "localhost";
@@ -26,9 +29,13 @@ public class ClientPro  implements ClientInterface{
 
 	private DataInputStream dataInputStream;
 	private DataOutputStream dataOutputStream;
-	
+	private Gson gson;
+	private List<Dto> movieList = new Vector<Dto>();
+	private List<Dto> ActorList = new Vector<Dto>();
+	private List<Dto> recentList = new Vector<Dto>();
 
 	public ClientPro(ClientFrame clientView) {
+		gson = new Gson();
 		this.view = clientView;
 		login(IP, PORT_NUM);
 
@@ -60,19 +67,26 @@ public class ClientPro  implements ClientInterface{
 						String log = dataInputStream.readUTF();
 						System.out.println(log);
 						String[] protocol = getMsg(log);
-
+						Type postType = new TypeToken<ArrayList<Dto>>() {}.getType();
+						
 						switch (protocol[0]) {
 						case "connect":
 							id = protocol[1];
 							break;
-						case "connectM":
-
+						case "loadM":
+							movieList = gson.fromJson(protocol[1], postType);
+							System.out.println("loadM/" + movieList);
+							loadListMoive(movieList);
 							break;
-						case "connectA":
-							
+						case "loadA":
+							ActorList = gson.fromJson(protocol[1], postType);
+							System.out.println("loadA/" + ActorList);
+							loadListActor(ActorList);
 							break;
-						case "recent":
-
+						case "loadR":
+							recentList = gson.fromJson(protocol[1], postType);
+							System.out.println("loadR/" + recentList);
+							loadRecentMovie(recentList);
 							break;
 						case "selectM":
 							
@@ -108,8 +122,8 @@ public class ClientPro  implements ClientInterface{
 	}
 	
 
-	
-	private void sentMsg(String msg) {
+	@Override
+	public void sentMsg(String msg) {
 		try {
 			
 			dataOutputStream.writeUTF(msg);
@@ -120,38 +134,47 @@ public class ClientPro  implements ClientInterface{
 
 	}
 	
-
 	@Override
-	public void loadListMoive(String joson) {
-		// TODO Auto-generated method stub
-		
+	public void loadListMoive(List<Dto> movielist) {
+		Vector<String> movieName = new Vector<String>();
+		for (Dto dto : movielist) {
+			movieName.add(dto.getTitle());
+		}
+		view.movielistupdate(movieName);
 	}
 
 	@Override
-	public void loadListActor(String joson) {
-		// TODO Auto-generated method stub
-		
+	public void loadListActor(List<Dto> actorlist) {
+		Vector<String> actorName = new Vector<String>();
+		for (Dto dto : actorlist) {
+			actorName.add(dto.getActorName());
+		}
+		view.actorlistupdate(actorName);
 	}
-
-	@Override
-	public void loadRecentMovie(String joson) {
-		// TODO Auto-generated method stub
 		
-	}
-
-	@Override
-	public void SearchMovieInfo(String joson) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void SearchActorInfo(String joson) {
-		// TODO Auto-generated method stub
-		
-	}
 	
-	public static void main(String[] args) {
-		new ClientPro(new ClientFrame());
+
+	@Override
+	public void loadRecentMovie(List<Dto> movielist) {
+		Vector<String> RmovieName = new Vector<String>();
+		for (Dto dto : movielist) {
+			RmovieName.add(dto.getTitle());
+		}
+		view.rMovielistupdate(RmovieName);
+		
 	}
+
+	@Override
+	public void SearchMovieInfo(String movieName) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void SearchActorInfo(String string) {
+		
+		
+	}
+
+
 }
