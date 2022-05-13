@@ -3,6 +3,7 @@ package teamProject.server;
 import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.util.ArrayList;
 import java.util.StringTokenizer;
 import java.util.Vector;
 
@@ -12,11 +13,13 @@ import com.google.gson.Gson;
 
 import lombok.Getter;
 import lombok.Setter;
-import teamProject.db.MovieAndActorDao;
+import teamProject.server.db.Dto;
+import teamProject.server.db.MovieAndActorDao;
+import teamProject.server.db.MovieDto;
 
 @Getter
 @Setter
-public class ServerPro {
+public class ServerPro implements ServerInterface {
 	private ServerPro mContext;
 	private MovieAndActorDao dao;
 	private ServerSocket serverSocket;
@@ -30,6 +33,7 @@ public class ServerPro {
 		mContext = this;
 		users = new Vector<User>();
 		gson = new Gson();
+		dao = new MovieAndActorDao();
 		startNetwork(PORT_NUMBER);
 	}
 
@@ -98,7 +102,7 @@ public class ServerPro {
 						user.sentMsg("connect/" + user.getUserid());
 					}
 				}
-				updateMovie();
+				broadCast();
 				break;
 			case "selectM":
 				findUser(id).sentMsg(searchMovieInfo(protocol[1]));
@@ -110,48 +114,53 @@ public class ServerPro {
 				break;
 			}
 		} catch (NullPointerException e) {
-			System.err.println("매칭되는 User ID가 없음");
+			e.printStackTrace();
+			System.err.println("db에 데이터 없음");
 		}
 	}
 
+	@Override
 	public String loadListMoive() {
 		StringBuffer jsonString = new StringBuffer();
-		jsonString.append("connectM/" + gson.toJson(dao.loadListMoive()));
+		jsonString.append("loadM/" + gson.toJson(dao.loadListMoive()));
 		return jsonString.toString();
-
 	}
 
+	@Override
 	public String loadListActor() {
 		StringBuffer jsonString = new StringBuffer();
-		jsonString.append("connectA/" + gson.toJson(dao.loadListActor()));
+		jsonString.append("loadA/" + gson.toJson(dao.loadListActor()));
 		return jsonString.toString();
 
 	}
 
+	@Override
 	public String loadRecentMovie() {
 		StringBuffer jsonString = new StringBuffer();
-		jsonString.append("recent/" + gson.toJson(dao.loadRecentMovie()));
+		jsonString.append("loadR/" + gson.toJson(dao.loadRecentMovie()));
 		return jsonString.toString();
 
 	}
 
+	@Override
 	public String searchMovieInfo(String movieName) {
 		StringBuffer jsonString = new StringBuffer();
 		jsonString.append("selectM/" + gson.toJson(dao.SearchMovieInfo(movieName)));
 		return jsonString.toString();
 	}
 
+	@Override
 	public String searchActorInfo(String actorName) {
 		StringBuffer jsonString = new StringBuffer();
 		jsonString.append("selectA/" + gson.toJson(dao.SearchMovieInfo(actorName)));
 		return jsonString.toString();
 	}
 
-	public void updateMovie() {
+	public void broadCast() {
 		for (User user : users) {
-			user.sentMsg("connectM/" + loadListMoive());
-			user.sentMsg("connectA/" + loadListMoive());
-			user.sentMsg("recent/" + loadRecentMovie());
+			user.sentMsg(loadListMoive());
+			user.sentMsg(loadListActor());
+			user.sentMsg(loadRecentMovie());
 		}
 	}
 

@@ -22,9 +22,8 @@ public class ClientPro  implements ClientInterface{
 	private ClientFrame view;
 	private static String IP = "localhost";
 	private static int PORT_NUM = 4000;
-	private String id;
-	private InputStream inputStream;
-	private OutputStream outputStream;
+	private String id = "";
+
 	private DataInputStream dataInputStream;
 	private DataOutputStream dataOutputStream;
 	
@@ -38,15 +37,11 @@ public class ClientPro  implements ClientInterface{
 	public void login(String ip, int portNumber) {
 		try {
 			socket = new Socket(ip, portNumber);
-			
-			
-			inputStream = socket.getInputStream();
-			dataInputStream = new DataInputStream(inputStream);
 
-			outputStream = socket.getOutputStream();
-			dataOutputStream = new DataOutputStream(outputStream);
+			dataInputStream = new DataInputStream(socket.getInputStream());
+			dataOutputStream = new DataOutputStream(socket.getOutputStream());
 			
-			sentMsg("connect/nt/0");
+			sentMsg("connect/0/0");
 			runPro();
 
 		} catch (IOException e) {
@@ -127,31 +122,31 @@ public class ClientPro  implements ClientInterface{
 	
 
 	@Override
-	public void loadListMoive() {
+	public void loadListMoive(String joson) {
 		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
-	public void loadListActor() {
+	public void loadListActor(String joson) {
 		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
-	public void loadRecentMovie() {
+	public void loadRecentMovie(String joson) {
 		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
-	public void SearchMovieInfo() {
+	public void SearchMovieInfo(String joson) {
 		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
-	public void SearchActorInfo() {
+	public void SearchActorInfo(String joson) {
 		// TODO Auto-generated method stub
 		
 	}
