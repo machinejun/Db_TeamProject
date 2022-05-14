@@ -2,7 +2,6 @@ package teamProject.client.view;
 
 import java.awt.Color;
 import java.awt.Font;
-import java.awt.ScrollPane;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.net.MalformedURLException;
@@ -50,7 +49,7 @@ public class ActorPanel extends JPanel {
 	}
 	
 	public void insertImage(String url) {
-		System.out.println(url);
+		System.out.println("배우패널에 url input check: "  +  url);
 		try {
 			//URL url = new URL(movie.getImageFileName());
 			URL imgRrl = new URL(url);
@@ -119,12 +118,12 @@ public class ActorPanel extends JPanel {
 		add(movieLabel);
 
 		movieList = new JList();
-		movieList.setFont(font);
-		ScrollPane scroll = new ScrollPane();
-		scroll.setBounds(100, 380, 550, 200);
-		scroll.add(movieList);
-		add(scroll);
+		movieList.setBounds(100, 380, 550, 200);
+		add(movieList);
 
+		// 스크롤
+		scrollPane = new JScrollPane();
+		movieList.add(scrollPane);
 
 		selectMoiveBtn = new JButton("검색");
 		selectMoiveBtn.setBounds(570, 600, 80, 20);

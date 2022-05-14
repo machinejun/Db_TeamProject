@@ -68,8 +68,9 @@ public class ClientPro  implements ClientInterface{
 				while (true) {
 					try {
 						String log = dataInputStream.readUTF();
-						System.out.println(log);
 						String[] protocol = getMsg(log);
+						System.out.println("@ 앞부분: " + protocol[0]);
+						System.out.println("@ 뒷부분: " + protocol[1]);
 						
 						switch (protocol[0]) {
 						case "connect":
@@ -85,18 +86,19 @@ public class ClientPro  implements ClientInterface{
 							loadRecentMovie(protocol[1]);
 							break;
 						case "selectM":
-							SearchMovieInfo(protocol[1]);
+							searchMovieInfo(protocol[1]);
 							break;
 						case "selectA":
-							
+							searchActorInfo(protocol[1]);
 							break;
 						case "imageM":
-							System.out.println("ssssimage");
 							System.out.println(protocol[1]);
 							view.getMoviePanel().insertImage(protocol[1]);
-						case "iamgeA":
-							System.out.println(protocol[1]);
+							break;
+						case "imageA":
+							System.out.println("배우 이미지 넣기 프로토콜 확인: " + protocol[1]);
 							view.getActorPanel().insertImage(protocol[1]);
+							break;
 						}
 						
 					} catch(SocketException e){
@@ -141,7 +143,6 @@ public class ClientPro  implements ClientInterface{
 	public void loadListMoive(String josn) {
 		Type postType = new TypeToken<ArrayList<Dto>>() {}.getType();
 		movieList = gson.fromJson(josn, postType);
-		System.out.println("loadM/" + movieList);
 		Vector<String> movieName = new Vector<String>();
 		for (Dto dto : movieList) {
 			movieName.add(dto.getTitle());
@@ -153,7 +154,6 @@ public class ClientPro  implements ClientInterface{
 	public void loadListActor(String json) {
 		Type postType = new TypeToken<ArrayList<Dto>>() {}.getType();
 		ActorList = gson.fromJson(json, postType);
-		System.out.println("loadA/" + ActorList);
 		Vector<String> actorName = new Vector<String>();
 		for (Dto dto : ActorList) {
 			actorName.add(dto.getActorName());
@@ -167,7 +167,6 @@ public class ClientPro  implements ClientInterface{
 	public void loadRecentMovie(String json) {
 		Type postType = new TypeToken<ArrayList<Dto>>() {}.getType();
 		recentList = gson.fromJson(json, postType);
-		System.out.println("loadR/" + recentList);
 		Vector<String> RmovieName = new Vector<String>();
 		for (Dto dto : recentList) {
 			RmovieName.add(dto.getTitle());
@@ -177,7 +176,7 @@ public class ClientPro  implements ClientInterface{
 	}
 
 	@Override
-	public void SearchMovieInfo(String json) {
+	public void searchMovieInfo(String json) {
 		MovieDto movie = gson.fromJson(json, MovieDto.class);
 		System.out.println(movie);
 		view.selctMovieUpdate(movie);
@@ -185,7 +184,7 @@ public class ClientPro  implements ClientInterface{
 	}
 
 	@Override
-	public void SearchActorInfo(String json) {
+	public void searchActorInfo(String json) {
 		ActorDto actor = gson.fromJson(json, ActorDto.class);
 		System.out.println(actor);
 		view.selctAcotrUpdate(actor);

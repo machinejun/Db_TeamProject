@@ -233,8 +233,8 @@ public class ClientFrame extends JFrame {
 				panel.setVisible(false);
 				moviePanel.setVisible(false);
 				actorPanel.setVisible(true);
-				clientpro.sentMsg("selectA/" + moviePanel.getRoles().get(moviePanel.getRoleList().getSelectedIndex()) 
-						+ "/" + clientpro.getId());
+				String str = moviePanel.getRoles().get(moviePanel.getRoleList().getSelectedIndex());
+				clientpro.sentMsg("selectA/" + str.split("/")[1].trim()+ "/" + clientpro.getId());
 				add(actorPanel);
 			} else if (e.getSource() == moviePanel.getBackBtn()) {
 				actorPanel.setVisible(false);
@@ -245,6 +245,9 @@ public class ClientFrame extends JFrame {
 				panel.setVisible(false);
 				actorPanel.setVisible(false);
 				moviePanel.setVisible(true);
+				String str = actorPanel.getMovies().get(actorPanel.getMovieList().getSelectedIndex());
+				System.out.println(str);
+				clientpro.sentMsg("selectM/" + str.split("/")[0].trim()+ "/" + clientpro.getId());
 				add(moviePanel);
 			} else if (e.getSource() == actorPanel.getBackBtn()) {
 				actorPanel.setVisible(false);
