@@ -2,9 +2,7 @@ package teamProject.client.view;
 
 import java.awt.Color;
 import java.awt.Font;
-import java.awt.ScrollPane;
 import java.awt.image.BufferedImage;
-import java.io.File;
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -41,14 +39,11 @@ public class MoviePanel extends JPanel {
 	private JButton selectActorBtn;
 	private JButton backBtn;
 	private Font font = new Font("맑은 고딕", Font.BOLD, 13);
+	private Vector<String> roles;
 	
 	// 패널 데이터
 	private MovieDto movie;
-	private String star;
-	private String audience;
-	private String sales;
 	
-
 	public MoviePanel() {
 		initData();
 		setVisible(true);
@@ -83,11 +78,11 @@ public class MoviePanel extends JPanel {
 		audienceLabel.setText("관객   수 : " + movie.getScoreDto().getAudience());
 		salesLabel.setText("매 출 액 : " + movie.getScoreDto().getSales());
 		
-		Vector<String> list = new Vector<String>();
+		roles = new Vector<String>();
 		for (RoleDto role : movie.getRoleList()) {
-			list.add(role.getRoleName() + " / " + role.getActorName());
+			roles.add(role.getRoleName() + " / " + role.getActorName());
 		}
-		roleList.setListData(list);
+		roleList.setListData(roles);
 		
 		
 	}
@@ -139,11 +134,12 @@ public class MoviePanel extends JPanel {
 
 		roleList = new JList();
 		roleList.setFont(font);
-		ScrollPane scroll = new ScrollPane();
-		scroll.setBounds(100, 380, 550, 200);
-		scroll.add(roleList);
-		add(scroll);
+		roleList.setBounds(100, 380, 550, 200);
+		add(roleList);
 
+		// 스크롤
+		scrollPane = new JScrollPane();
+		roleList.add(scrollPane);
 
 		selectActorBtn = new JButton("검색");
 		selectActorBtn.setFont(font);

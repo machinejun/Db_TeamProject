@@ -12,6 +12,7 @@ import com.google.gson.Gson;
 
 import lombok.Getter;
 import lombok.Setter;
+import teamProject.server.db.ActorDto;
 import teamProject.server.db.MovieAndActorDao;
 import teamProject.server.db.MovieDto;
 
@@ -153,10 +154,10 @@ public class ServerPro implements ServerInterface {
 	@Override
 	public String searchMovieInfo(String movieName, int id) {
 		StringBuffer jsonString = new StringBuffer();
-		MovieDto dto = dao.SearchMovieInfo(movieName);
-		sentImageUrl(dto.getImageFileName(), id);
-		dto.setImageFileName("");
-		jsonString.append("selectM@" + gson.toJson(dto));
+		MovieDto mdto = dao.searchMovieInfo(movieName);
+		sentImageMUrl(mdto.getImageFileName(), id);
+		mdto.setImageFileName("");
+		jsonString.append("selectM@" + gson.toJson(mdto));
 		
 		return jsonString.toString();
 	}
@@ -164,7 +165,10 @@ public class ServerPro implements ServerInterface {
 	@Override
 	public String searchActorInfo(String actorName, int id) {
 		StringBuffer jsonString = new StringBuffer();
-		jsonString.append("selectA@" + gson.toJson(dao.SearchMovieInfo(actorName)));
+		ActorDto adto = dao.searchActorInfo(actorName);
+		sentImageAUrl(adto.getImageFileName(), id);
+		adto.setImageFileName("");
+		jsonString.append("selectA@" + gson.toJson(adto));
 		return jsonString.toString();
 	}
 
@@ -186,8 +190,13 @@ public class ServerPro implements ServerInterface {
 
 	}
 	
-	private String sentImageUrl(String url, int id) {
+	private String sentImageMUrl(String url, int id) {
 		findUser(id).sentMsg("imageM@" + url);
+		return "";
+	}
+	
+	private String sentImageAUrl(String url, int id) {
+		findUser(id).sentMsg("imageA@" + url);
 		return "";
 	}
 

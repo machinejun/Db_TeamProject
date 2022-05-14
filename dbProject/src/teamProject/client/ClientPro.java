@@ -94,6 +94,9 @@ public class ClientPro  implements ClientInterface{
 							System.out.println("ssssimage");
 							System.out.println(protocol[1]);
 							view.getMoviePanel().insertImage(protocol[1]);
+						case "iamgeA":
+							System.out.println(protocol[1]);
+							view.getActorPanel().insertImage(protocol[1]);
 						}
 						
 					} catch(SocketException e){
@@ -182,8 +185,10 @@ public class ClientPro  implements ClientInterface{
 	}
 
 	@Override
-	public void SearchActorInfo(String string) {
-		
+	public void SearchActorInfo(String json) {
+		ActorDto actor = gson.fromJson(json, ActorDto.class);
+		System.out.println(actor);
+		view.selctAcotrUpdate(actor);
 		
 	}
 

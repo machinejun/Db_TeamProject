@@ -12,6 +12,7 @@ import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JList;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTabbedPane;
 import javax.swing.JTextField;
@@ -20,7 +21,7 @@ import javax.swing.border.LineBorder;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 
-import lombok.Getter;
+import teamProject.client.ActorDto;
 import teamProject.client.ClientPro;
 import teamProject.client.MovieDto;
 
@@ -174,6 +175,11 @@ public class ClientFrame extends JFrame {
 		System.out.println("frmae + " + movieDto);
 		moviePanel.loadMovieinfo(movieDto);
 	}
+	
+	public void selctAcotrUpdate(ActorDto acotrDto) {
+		System.out.println("frmae + " + acotrDto);
+		actorPanel.loadActorinfo(acotrDto);
+	}
 
 	public class Listener implements ActionListener, ListSelectionListener {
 		
@@ -200,24 +206,35 @@ public class ClientFrame extends JFrame {
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			if (e.getSource() == searchBtn) {
-
-				if (combo.getSelectedItem().equals("제목")) {
-					panel.setVisible(false);
-					actorPanel.setVisible(false);
-					moviePanel.setVisible(true);
-					clientpro.sentMsg("selectM/" + textField.getText() + "/" + clientpro.getId());
-					add(moviePanel);
-				} else {
-					panel.setVisible(false);
-					moviePanel.setVisible(false);
-					actorPanel.setVisible(true);
-					clientpro.sentMsg("selectA/" + textField.getText() + "/" + clientpro.getId());
-					add(actorPanel);
+				if (combo.getSelectedItem().equals("제목")) {	
+					String smovie = textField.getText();
+					if(moviename.contains(smovie)) {
+						panel.setVisible(false);
+						actorPanel.setVisible(false);
+						moviePanel.setVisible(true);
+						clientpro.sentMsg("selectM/" + smovie + "/" + clientpro.getId());
+						add(moviePanel);
+					}else {
+						JOptionPane.showMessageDialog(null, "선택 조건을 다시 확인해 주세요\n 현재 영화목록에 검색하신 영화는 존재하지 않습니다.");
+					}
+				} else {	
+					String sAcotr = textField.getText();
+					if(actorname.contains(sAcotr)) {
+						panel.setVisible(false);
+						moviePanel.setVisible(false);
+						actorPanel.setVisible(true);
+						clientpro.sentMsg("selectA/" + sAcotr + "/" + clientpro.getId());
+						add(actorPanel);
+					}else {
+						JOptionPane.showMessageDialog(null, "선택 조건을 다시 확인해 주세요\n 현재 배우목록에 검색하신 배우는 존재하지 않습니다.");
+					}
 				}
 			} else if (e.getSource() == moviePanel.getSelectActorBtn()) {
 				panel.setVisible(false);
 				moviePanel.setVisible(false);
 				actorPanel.setVisible(true);
+				clientpro.sentMsg("selectA/" + moviePanel.getRoles().get(moviePanel.getRoleList().getSelectedIndex()) 
+						+ "/" + clientpro.getId());
 				add(actorPanel);
 			} else if (e.getSource() == moviePanel.getBackBtn()) {
 				actorPanel.setVisible(false);
