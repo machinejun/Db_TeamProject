@@ -2,6 +2,7 @@ package teamProject.client.view;
 
 import java.awt.Color;
 import java.awt.Font;
+import java.awt.ScrollPane;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -81,13 +82,13 @@ public class ActorPanel extends JPanel{
 		add(movieLabel);
 		
 		movieList = new JList();
-		movieList.setBounds(100, 380, 550, 200);
-		add(movieList);
+		movieList.setFont(font);
+		ScrollPane scroll = new ScrollPane();
+		scroll.setBounds(100, 380, 550, 200);
+		scroll.add(movieList);
+		add(scroll);
 		
 		
-		// 스크롤
-		scrollPane = new JScrollPane();
-		movieList.add(scrollPane);
 		
 		selectMoiveBtn = new JButton("검색");
 		selectMoiveBtn.setBounds(570, 600, 80, 20);

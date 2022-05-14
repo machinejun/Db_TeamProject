@@ -2,6 +2,7 @@ package teamProject.client.view;
 
 import java.awt.Color;
 import java.awt.Font;
+import java.awt.ScrollPane;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
@@ -138,12 +139,11 @@ public class MoviePanel extends JPanel {
 
 		roleList = new JList();
 		roleList.setFont(font);
-		roleList.setBounds(100, 380, 550, 200);
-		add(roleList);
+		ScrollPane scroll = new ScrollPane();
+		scroll.setBounds(100, 380, 550, 200);
+		scroll.add(roleList);
+		add(scroll);
 
-		// 스크롤
-		scrollPane = new JScrollPane();
-		roleList.add(scrollPane);
 
 		selectActorBtn = new JButton("검색");
 		selectActorBtn.setFont(font);
