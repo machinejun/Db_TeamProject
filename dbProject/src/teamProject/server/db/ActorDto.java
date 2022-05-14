@@ -1,5 +1,7 @@
 package teamProject.server.db;
 
+import java.util.ArrayList;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -16,7 +18,7 @@ public class ActorDto extends Dto {
 	private String partner;
 	private String imageFileName;
 	
-	RoleDto roleDto;
+	ArrayList<RoleDto> roleList = new ArrayList<RoleDto>();
 	
 	/*
 	RoleList roleList = new RoleList();

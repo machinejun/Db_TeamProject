@@ -9,14 +9,13 @@ public class MainTest {
 		List<Dto> data = new ArrayList<Dto>();
 		MovieAndActorDao dao= new MovieAndActorDao();
 		
-		Dto dto = new Dto();
+		ActorDto dto = new ActorDto();
 		
-		dto = (MovieDto) dao.SearchMovieInfo("어벤져스");
-		//data = dao.loadListActor();
+		dto =dao.searchActorInfo("류준열");
 		
 		
 		for (int i = 0; i < data.size(); i++) {
-			System.out.println(data.get(i));
+			System.out.println(data.get(i).getTitle());
 //			System.out.println(data.get(i).getTitle());
 //			System.out.println(data.get(i).getActorName());
 		}
@@ -28,7 +27,7 @@ public class MainTest {
 		}
 		*/
 		
-		System.out.println(dto);
+		System.out.println(dto.getRoleList().get(0).getTitle());
 		
 	}
 
