@@ -318,6 +318,10 @@ public class ManagerFrame extends JFrame implements ActionListener {
 						Double.parseDouble(txtStarScore.getText()), txtGenre.getText(), txtTitle.getText() + ".jpg");
 				titleList = managerDao.loadListMoive();
 				movieList.setListData(titleList);
+				txtTitle.setText(null);
+				txtReleaseDate.setText(null);
+				txtStarScore.setText(null);
+				txtGenre.setText(null);
 				JOptionPane.showMessageDialog(null, "등록되었습니다.", "알림", JOptionPane.CLOSED_OPTION);
 
 			}
@@ -340,6 +344,8 @@ public class ManagerFrame extends JFrame implements ActionListener {
 			} else {
 				managerDao.updateStarScore(Double.parseDouble(updateStarScorePanel.getUpdateStarTF().getText()),
 						updateStarScorePanel.getUpdateTF().getText());
+				updateStarScorePanel.getUpdateStarTF().setText(null);
+				updateStarScorePanel.getUpdateTF().setText(null);
 				JOptionPane.showMessageDialog(null, "수정되었습니다.", "알림", JOptionPane.CLOSED_OPTION);
 
 			}
@@ -353,6 +359,9 @@ public class ManagerFrame extends JFrame implements ActionListener {
 				managerDao.updateScore(Integer.parseInt(updateScorePanel.getUpdateAudienceTF().getText()),
 						BigDecimal.valueOf(Long.parseLong(updateScorePanel.getUpdateSalesTF().getText())),
 						updateScorePanel.getUpdateScoreTF().getText());
+				updateScorePanel.getUpdateAudienceTF().setText(null);
+				updateScorePanel.getUpdateSalesTF().setText(null);
+				updateScorePanel.getUpdateScoreTF().setText(null);
 				JOptionPane.showMessageDialog(null, "수정되었습니다.", "알림", JOptionPane.CLOSED_OPTION);
 
 			}
