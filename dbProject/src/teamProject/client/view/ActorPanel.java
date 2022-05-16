@@ -38,6 +38,7 @@ public class ActorPanel extends JPanel {
 	private JButton selectMoiveBtn;
 	private JButton backBtn;
 	private Font font = new Font("맑은 고딕", Font.BOLD, 13);
+	private Font listfont = new Font("굴림체", Font.BOLD, 18);
 
 	private Vector<String> movies;
 
@@ -70,7 +71,7 @@ public class ActorPanel extends JPanel {
 	public void loadActorinfo(ActorDto actor) {
 
 		nameLabel.setText("배우 이름 : " + actor.getActorName());
-		ageLabel.setText("출생 연도 : " + actor.getBirthYear());
+		ageLabel.setText("출생 년도 : " + actor.getBirthYear());
 		weightLabel.setText("몸 무 게 : " + actor.getWeight());
 		heightLabel.setText("신    장 : " + actor.getHeight());
 		partnerLabel.setText("배 우 자 : " + actor.getPartner());
@@ -119,18 +120,15 @@ public class ActorPanel extends JPanel {
 
 		movieList = new JList();
 		movieList.setBounds(100, 380, 550, 200);
+		movieList.setFont(listfont);
 		add(movieList);
-
-		// 스크롤
-		scrollPane = new JScrollPane();
-		movieList.add(scrollPane);
 
 		selectMoiveBtn = new JButton("검색");
 		selectMoiveBtn.setBounds(570, 600, 80, 20);
 		add(selectMoiveBtn);
 
 		backBtn = new JButton("뒤로가기");
-		backBtn.setBounds(480, 600, 80, 20);
+		backBtn.setBounds(460, 600, 100, 20);
 		add(backBtn);
 
 	}

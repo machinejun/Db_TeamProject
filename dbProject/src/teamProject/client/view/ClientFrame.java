@@ -42,7 +42,7 @@ public class ClientFrame extends JFrame {
 	private JTextField textField;
 	private JLabel title;
 	private Font font = new Font("맑은 고딕", Font.BOLD, 13);
-	private Font listfont = new Font("맑은 고딕", Font.BOLD, 25);
+	private Font listfont = new Font("굴림체", Font.BOLD, 23);
 	//
 	private Vector<String> moviename = new Vector<String>();
 	private Vector<String> actorname = new Vector<String>();
@@ -133,8 +133,10 @@ public class ClientFrame extends JFrame {
 
 		rMovieListPanel.setLayout(null);
 		recentMovieList.setFont(listfont);
-		recentMovieList.setBounds(10, 10, 680, 540);
-		rMovieListPanel.add(recentMovieList);
+		ScrollPane pr = new ScrollPane(); 
+		pr.setBounds(10, 10, 680, 540);
+		pr.add(recentMovieList);
+		rMovieListPanel.add(pr);
 		tap.addTab("최신 영화 리스트", rMovieListPanel);
 		searchBtn = new JButton("검색");
 		searchBtn.setFont(font);
@@ -270,7 +272,7 @@ public class ClientFrame extends JFrame {
 				textField.setText(actorname.get(i));
 			} else if (e.getSource().equals(recentMovieList)) {
 				System.out.println("recentMovieList");
-				int i = actorList.getSelectedIndex();
+				int i = recentMovieList.getSelectedIndex();
 				textField.setText(recentMoviename.get(i));
 			}
 		}

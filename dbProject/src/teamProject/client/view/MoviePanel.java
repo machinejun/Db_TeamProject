@@ -39,6 +39,7 @@ public class MoviePanel extends JPanel {
 	private JButton selectActorBtn;
 	private JButton backBtn;
 	private Font font = new Font("맑은 고딕", Font.BOLD, 13);
+	private Font listfont = new Font("굴림체", Font.BOLD, 18);
 	private Vector<String> roles;
 	
 	// 패널 데이터
@@ -73,7 +74,7 @@ public class MoviePanel extends JPanel {
 		
 		titleLabel.setText("영화 제목 : " + movie.getTitle());
 		genreLabel.setText("장    르 : " + movie.getGenre());
-		yearLabel.setText( "개봉 연도 : " + movie.getReleaseDate());
+		yearLabel.setText( "개봉 일자 : " + movie.getReleaseDate());
 		starLabel.setText( "별    점 : " + movie.getStarScore());
 		audienceLabel.setText("관객   수 : " + movie.getScoreDto().getAudience());
 		salesLabel.setText("매 출 액 : " + movie.getScoreDto().getSales());
@@ -133,13 +134,10 @@ public class MoviePanel extends JPanel {
 		add(roleLabel);
 
 		roleList = new JList();
-		roleList.setFont(font);
+		roleList.setFont(listfont);
 		roleList.setBounds(100, 380, 550, 200);
 		add(roleList);
 
-		// 스크롤
-		scrollPane = new JScrollPane();
-		roleList.add(scrollPane);
 
 		selectActorBtn = new JButton("검색");
 		selectActorBtn.setFont(font);
@@ -148,7 +146,7 @@ public class MoviePanel extends JPanel {
 		
 		backBtn = new JButton("뒤로가기");
 		backBtn.setFont(font);
-		backBtn.setBounds(480, 600, 80, 20);
+		backBtn.setBounds(460, 600, 100, 20);
 		add(backBtn);
 
 	}
