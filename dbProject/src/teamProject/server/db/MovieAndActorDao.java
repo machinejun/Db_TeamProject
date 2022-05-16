@@ -132,22 +132,6 @@ public class MovieAndActorDao implements DaoInterface<Dto> {
 
 				scoreDto.setAudience(resultSet.getInt("audience"));
 				scoreDto.setSales(resultSet.getInt("sales"));
-<<<<<<< HEAD
-
-				/*
-				 * movieDto.movieActorList.setActorName(resultSet.getString("actorName"));
-				 * movieDto.movieActorList.setCategory(resultSet.getString("category"));
-				 * movieDto.movieActorList.setRoleName(resultSet.getString("roleName"));
-				 * 
-				 * movieDto.movieScoreList.setAudience(resultSet.getInt("audience"));
-				 * movieDto.movieScoreList.setSales(resultSet.getInt("sales"));
-				 */
-
-=======
-				
-				resultList.add(movieDto);
-				
->>>>>>> feature-jh
 			}
 
 			movieDto.setScoreDto(scoreDto);
@@ -193,20 +177,8 @@ public class MovieAndActorDao implements DaoInterface<Dto> {
 				roleDto.setTitle(resultSet.getString("title"));
 				roleDto.setRoleName(resultSet.getString("roleName"));
 				roleDto.setCategory(resultSet.getString("category"));
-<<<<<<< HEAD
 				actorDto.roleList.add(roleDto);
-				
-				/*
-				 * actorDto.roleList.setRoleName(resultSet.getString("roleName"));
-				 * actorDto.roleList.setCategory(resultSet.getString("category"));
-				 */
 
-=======
-
-				actorDto.setRoleDto(roleDto);
-		
-				resultList.add(actorDto);
->>>>>>> feature-jh
 			}
 			
 		} catch (SQLException e) {

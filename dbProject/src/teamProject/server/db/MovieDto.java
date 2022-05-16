@@ -15,11 +15,6 @@ public class MovieDto extends Dto {
 	private String genre;
 	private float starScore;
 	private String imageFileName;
-
-<<<<<<< HEAD
-	
-=======
->>>>>>> feature-jh
 	private ScoreDto scoreDto;
 
 	ArrayList<RoleDto> roleList = new ArrayList<RoleDto>();

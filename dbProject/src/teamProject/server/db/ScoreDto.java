@@ -8,8 +8,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class ScoreDto extends Dto {
-
+	
 	private int audience;
 	private int sales;
-
 }
