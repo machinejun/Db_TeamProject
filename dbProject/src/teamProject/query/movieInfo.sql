@@ -126,7 +126,7 @@ INSERT INTO actor VALUES (33, '윤아', 1990, 168, 47, NULL, 'https://search.pst
 INSERT INTO actor VALUES (34, '고두심', 1951, 160, 53, NULL, 'https://search.pstatic.net/common?type=b&size=216&expire=1&refresh=true&quality=100&direct=true&src=http%3A%2F%2Fsstatic.naver.net%2Fpeople%2F0%2F201404041105394501.jpg');
 INSERT INTO actor VALUES (35, '김태리', 1990, 166, 51, NULL, 'https://search.pstatic.net/common?type=b&size=216&expire=1&refresh=true&quality=100&direct=true&src=http%3A%2F%2Fsstatic.naver.net%2Fpeople%2Fportrait%2F202203%2F20220307140537732.jpg');
 INSERT INTO actor VALUES (36, '류준열', 1986, 183, 70, NULL, 'https://search.pstatic.net/common?type=f&size=240x300&quality=100&direct=true&src=http%3A%2F%2Fsstatic.naver.net%2Fpeople%2Fportrait%2F202111%2F20211124133103392.jpg');
-INSERT INTO actor VALUES (37, '문소리', 1974, 164, 57, '장준환', 'https://search.pstatic.net/common?type=f&size=928x1392&quality=100&direct=true&src=http%3A%2F%2Fsstatic.naver.net%2Fpeople%2F160%2F2021051113412092431_thumb.png');
+INSERT INTO actor VALUES (37, '문소리', 1974, 164, 57, '장준환', 'https://search.pstatic.net/common?type=f&size=240x300&quality=100&direct=true&src=http%3A%2F%2Fsstatic.naver.net%2Fpeople%2Fportrait%2F202112%2F20211223150056955.jpg');
 INSERT INTO actor VALUES (38, '조인성', 1981, 186, 68, NULL, 'https://search.pstatic.net/common?type=b&size=216&expire=1&refresh=true&quality=100&direct=true&src=http%3A%2F%2Fsstatic.naver.net%2Fpeople%2F181%2F201710261740338821.jpg');
 INSERT INTO actor VALUES (39, '정우성', 1973, 186, 80, NULL, 'https://search.pstatic.net/common?type=b&size=216&expire=1&refresh=true&quality=100&direct=true&src=http%3A%2F%2Fsstatic.naver.net%2Fpeople%2Fportrait%2F201812%2F20181220111450105.jpg');
 INSERT INTO actor VALUES (40, '김아중', 1982, 170, 48, NULL, 'https://search.pstatic.net/common?type=f&size=240x300&quality=100&direct=true&src=http%3A%2F%2Fsstatic.naver.net%2Fpeople%2Fportrait%2F202112%2F20211202160752166.jpg');
@@ -141,7 +141,7 @@ INSERT INTO actor VALUES (48, '라이언 고슬링', 1980, 184, 78, NULL, 'https
 INSERT INTO actor VALUES (49, '마크 스트롱', 1963, 186, 79, '리자 마셜', 'https://upload.wikimedia.org/wikipedia/commons/thumb/b/b5/Mark_Strong_%28Berlin_Film_Festival_2011%29.jpg/250px-Mark_Strong_%28Berlin_Film_Festival_2011%29.jpg');
 INSERT INTO actor VALUES (50, '엠마 톰슨', 1959, 173, 57, '그레그 와이즈', 'https://upload.wikimedia.org/wikipedia/commons/thumb/a/a0/Emma_Thompson_2022.jpg/250px-Emma_Thompson_2022.jpg');
 
-update actor set image = 'https://ifh.cc/g/gM9nx5.jpg' where id = 40;
+update actor set image = 'https://search.pstatic.net/common?type=f&size=240x300&quality=100&direct=true&src=http%3A%2F%2Fsstatic.naver.net%2Fpeople%2Fportrait%2F202112%2F20211223150056955.jpg' where id = 37;
 
 SELECT * FROM score;
 DESC score;
