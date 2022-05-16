@@ -37,8 +37,8 @@ public class ActorPanel extends JPanel {
 	private JScrollPane scrollPane;
 	private JButton selectMoiveBtn;
 	private JButton backBtn;
-	private Font font = new Font("맑은 고딕", Font.BOLD, 13);
-	private Font listfont = new Font("굴림체", Font.BOLD, 18);
+	private Font font = new Font("맑은 고딕", Font.BOLD, 15);
+	private Font listfont = new Font("굴림체", Font.BOLD, 15);
 
 	private Vector<String> movies;
 
@@ -52,7 +52,6 @@ public class ActorPanel extends JPanel {
 	public void insertImage(String url) {
 		System.out.println("배우패널에 url input check: "  +  url);
 		try {
-			//URL url = new URL(movie.getImageFileName());
 			URL imgRrl = new URL(url);
 			BufferedImage img = ImageIO.read(imgRrl);
 			ImageIcon imgIcon = new ImageIcon();
@@ -72,8 +71,8 @@ public class ActorPanel extends JPanel {
 
 		nameLabel.setText("배우 이름 : " + actor.getActorName());
 		ageLabel.setText("출생 년도 : " + actor.getBirthYear());
-		weightLabel.setText("몸 무 게 : " + actor.getWeight());
 		heightLabel.setText("신    장 : " + actor.getHeight());
+		weightLabel.setText("몸 무 게 : " + actor.getWeight());
 		partnerLabel.setText("배 우 자 : " + actor.getPartner());
 		
 		movies = new Vector<String>();
@@ -95,26 +94,32 @@ public class ActorPanel extends JPanel {
 		add(imageLabel);
 
 		nameLabel = new JLabel();
+		nameLabel.setFont(font);
 		nameLabel.setBounds(400, 50, 250, 30);
 		add(nameLabel);
 
 		ageLabel = new JLabel();
+		ageLabel.setFont(font);
 		ageLabel.setBounds(400, 100, 250, 30);
 		add(ageLabel);
 
 		weightLabel = new JLabel();
-		weightLabel.setBounds(400, 150, 250, 30);
+		weightLabel.setFont(font);
+		weightLabel.setBounds(400, 200, 250, 30);
 		add(weightLabel);
 
 		heightLabel = new JLabel();
-		heightLabel.setBounds(400, 200, 250, 30);
+		heightLabel.setFont(font);
+		heightLabel.setBounds(400, 150, 250, 30);
 		add(heightLabel);
 
 		partnerLabel = new JLabel();
+		partnerLabel.setFont(font);
 		partnerLabel.setBounds(400, 250, 250, 30);
 		add(partnerLabel);
 
 		movieLabel = new JLabel("출연작");
+		movieLabel.setFont(font);
 		movieLabel.setBounds(100, 350, 80, 30);
 		add(movieLabel);
 
@@ -124,10 +129,12 @@ public class ActorPanel extends JPanel {
 		add(movieList);
 
 		selectMoiveBtn = new JButton("검색");
+		selectMoiveBtn.setFont(font);
 		selectMoiveBtn.setBounds(570, 600, 80, 20);
 		add(selectMoiveBtn);
 
 		backBtn = new JButton("뒤로가기");
+		backBtn.setFont(font);
 		backBtn.setBounds(460, 600, 100, 20);
 		add(backBtn);
 

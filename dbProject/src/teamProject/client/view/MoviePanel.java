@@ -38,8 +38,8 @@ public class MoviePanel extends JPanel {
 	private JScrollPane scrollPane;
 	private JButton selectActorBtn;
 	private JButton backBtn;
-	private Font font = new Font("맑은 고딕", Font.BOLD, 13);
-	private Font listfont = new Font("굴림체", Font.BOLD, 18);
+	private Font font = new Font("맑은 고딕", Font.BOLD, 15);
+	private Font listfont = new Font("굴림체", Font.BOLD, 15);
 	private Vector<String> roles;
 	
 	// 패널 데이터
