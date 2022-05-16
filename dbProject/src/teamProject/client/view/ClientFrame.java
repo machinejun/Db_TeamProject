@@ -43,7 +43,7 @@ public class ClientFrame extends JFrame {
 	private JLabel title;
 	private Font font = new Font("맑은 고딕", Font.BOLD, 13);
 	private Font listfont = new Font("굴림체", Font.BOLD, 23);
-	//
+	
 	private Vector<String> moviename = new Vector<String>();
 	private Vector<String> actorname = new Vector<String>();
 	private Vector<String> recentMoviename = new Vector<String>();

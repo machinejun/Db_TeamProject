@@ -43,11 +43,17 @@ public class ManagerFrame extends JFrame implements ActionListener {
 	private JTextField txtStarScore;
 	private JTextField txtGenre;
 	private JTextField txtSales;
+	private JTextField txtInsertAudience;
+	private JTextField txtInsertSales;
+	private JTextField txtImageUrl;
 
 	private JLabel titleLabel;
 	private JLabel releaseDateLabel;
 	private JLabel starScoreLabel;
 	private JLabel genreLabel;
+	private JLabel audienceLabel;
+	private JLabel salesLabel;
+	private JLabel imageLabel;
 
 	private ScrollPane scrollPane;
 
@@ -111,16 +117,25 @@ public class ManagerFrame extends JFrame implements ActionListener {
 		releaseDateLabel = new JLabel("개봉 일자 : ");
 		genreLabel = new JLabel("장르 : ");
 		starScoreLabel = new JLabel("평점 : ");
+		audienceLabel = new JLabel("관객 수 : ");
+		salesLabel = new JLabel("매출 : ");
+		imageLabel = new JLabel("이미지 URL : ");
 
 		txtTitle = new JTextField();
 		txtReleaseDate = new JTextField();
 		txtStarScore = new JTextField();
 		txtGenre = new JTextField();
+		txtInsertAudience = new JTextField();
+		txtInsertSales = new JTextField();
+		txtImageUrl = new JTextField();
 
 		titleLabel.setFont(font);
 		releaseDateLabel.setFont(font);
 		starScoreLabel.setFont(font);
 		genreLabel.setFont(font);
+		audienceLabel.setFont(font);
+		salesLabel.setFont(font);
+		imageLabel.setFont(font);
 
 		scrollPane = new ScrollPane();
 
@@ -147,8 +162,11 @@ public class ManagerFrame extends JFrame implements ActionListener {
 		txtReleaseDate.setBounds(180, 140, 150, 25);
 		txtStarScore.setBounds(180, 180, 150, 25);
 		txtGenre.setBounds(180, 220, 150, 25);
+		txtInsertAudience.setBounds(180, 260, 150, 25);
+		txtInsertSales.setBounds(180, 300, 150, 25);
+		txtImageUrl.setBounds(180, 340, 150, 25);
 
-		insertBtn.setBounds(190, 350, 85, 30);
+		insertBtn.setBounds(190, 400, 85, 30);
 		updateStarBtn.setBounds(200, 200, 85, 30);
 		deleteBtn.setBounds(200, 550, 85, 30);
 
@@ -164,6 +182,9 @@ public class ManagerFrame extends JFrame implements ActionListener {
 		releaseDateLabel.setBounds(100, 140, 100, 25);
 		starScoreLabel.setBounds(130, 180, 100, 25);
 		genreLabel.setBounds(130, 220, 100, 25);
+		audienceLabel.setBounds(110, 260, 100, 25);
+		salesLabel.setBounds(130, 300, 100, 25);
+		imageLabel.setBounds(80, 340, 150, 25);
 
 		movieList.setBounds(65, 70, 350, 450);
 		scrollPane.add(movieList);
@@ -183,6 +204,12 @@ public class ManagerFrame extends JFrame implements ActionListener {
 		insertTab.add(releaseDateLabel);
 		insertTab.add(genreLabel);
 		insertTab.add(starScoreLabel);
+		insertTab.add(audienceLabel);
+		insertTab.add(salesLabel);
+		insertTab.add(txtInsertAudience);
+		insertTab.add(txtInsertSales);
+		insertTab.add(imageLabel);
+		insertTab.add(txtImageUrl);
 
 		setContentPane(backgroundPanel);
 	}
@@ -310,18 +337,23 @@ public class ManagerFrame extends JFrame implements ActionListener {
 
 		if (selectedBtn == insertBtn) {
 			if (txtTitle.getText().length() == 0 || txtReleaseDate.getText().length() == 0
-					|| txtStarScore.getText().length() == 0 || txtGenre.getText().length() == 0) {
+					|| txtStarScore.getText().length() == 0 || txtGenre.getText().length() == 0
+					|| txtInsertAudience.getText().length() == 0 || txtInsertSales.getText().length() == 0) {
 				JOptionPane.showMessageDialog(null, "모든 항목을 입력하세요.", "알림", JOptionPane.ERROR_MESSAGE);
 
 			} else {
 				managerDao.insertMovieInfo(txtTitle.getText(), txtReleaseDate.getText(),
-						Double.parseDouble(txtStarScore.getText()), txtGenre.getText(), txtTitle.getText() + ".jpg");
+						Double.parseDouble(txtStarScore.getText()), txtGenre.getText(), txtImageUrl.getText());
+				managerDao.insertScoreInfo(txtTitle.getText(), Integer.parseInt(txtInsertAudience.getText()), BigDecimal.valueOf(Long.parseLong(txtInsertSales.getText())));
 				titleList = managerDao.loadListMoive();
 				movieList.setListData(titleList);
 				txtTitle.setText(null);
 				txtReleaseDate.setText(null);
 				txtStarScore.setText(null);
 				txtGenre.setText(null);
+				txtInsertAudience.setText(null);
+				txtInsertSales.setText(null);
+				txtImageUrl.setText(null);
 				JOptionPane.showMessageDialog(null, "등록되었습니다.", "알림", JOptionPane.CLOSED_OPTION);
 
 			}

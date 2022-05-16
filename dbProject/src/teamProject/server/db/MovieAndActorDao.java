@@ -105,7 +105,7 @@ public class MovieAndActorDao implements DaoInterface<Dto> {
 
 		String selectQuery = "SELECT *, r.roleName\r\n"
 				+ "FROM movie m\r\n"
-				+ "INNER JOIN role r\r\n"
+				+ "LEFT OUTER JOIN role r\r\n"
 				+ "ON m.title = r.title\r\n"
 				+ "INNER JOIN score s\r\n"
 				+ "ON m.title = s.title\r\n"
