@@ -17,17 +17,6 @@ public class ActorDto extends Dto {
 	private int birthYear;
 	private String partner;
 	private String imageFileName;
-	
-	ArrayList<RoleDto> roleList = new ArrayList<RoleDto>();
-	
-	/*
-	RoleList roleList = new RoleList();
 
-	@Data
-	class RoleList {
-		String roleName;
-		String category;
-	}
-	*/
-	
+	ArrayList<RoleDto> roleList = new ArrayList<RoleDto>();
 }

@@ -7,9 +7,8 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class ScoreDto extends Dto{
+public class ScoreDto extends Dto {
 	
 	private int audience;
 	private int sales;
 }
-
