@@ -344,7 +344,8 @@ public class ManagerFrame extends JFrame implements ActionListener {
 			} else {
 				managerDao.insertMovieInfo(txtTitle.getText(), txtReleaseDate.getText(),
 						Double.parseDouble(txtStarScore.getText()), txtGenre.getText(), txtImageUrl.getText());
-				managerDao.insertScoreInfo(txtTitle.getText(), Integer.parseInt(txtInsertAudience.getText()), BigDecimal.valueOf(Long.parseLong(txtInsertSales.getText())));
+				managerDao.insertScoreInfo(txtTitle.getText(), Integer.parseInt(txtInsertAudience.getText()),
+						BigDecimal.valueOf(Long.parseLong(txtInsertSales.getText())));
 				titleList = managerDao.loadListMoive();
 				movieList.setListData(titleList);
 				txtTitle.setText(null);
