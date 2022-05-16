@@ -1,8 +1,11 @@
-package teamProject.server.db;
+package teamProject.trash;
 
 import java.math.BigDecimal;
 
 import com.google.gson.Gson;
+
+import teamProject.manager.ManagerDao;
+import teamProject.manager.ManagerFrame;
 
 public class ManagerPro implements CallbackManagerService {
 

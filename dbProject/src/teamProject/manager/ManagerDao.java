@@ -1,4 +1,4 @@
-package teamProject.server.db;
+package teamProject.manager;
 
 import java.math.BigDecimal;
 import java.sql.Connection;
@@ -7,6 +7,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Vector;
+
+import teamProject.server.db.DBClient;
 
 public class ManagerDao implements IManager {
 

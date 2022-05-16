@@ -1,4 +1,4 @@
-package teamProject.server.db;
+package teamProject.trash;
 
 import java.math.BigDecimal;
 

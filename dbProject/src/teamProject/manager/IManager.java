@@ -1,4 +1,4 @@
-package teamProject.server.db;
+package teamProject.manager;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
