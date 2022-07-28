@@ -43,7 +43,6 @@
 
 - 영화 목록 조회
 
-<img src="https://user-images.githubusercontent.com/96460131/181404021-0ab3a0f1-415a-4de4-9b40-a5771570a1c5.png" width=50% height=50%/>
 <img src="https://user-images.githubusercontent.com/96460131/181404030-db5fcc1b-f509-4ca8-8ed9-948a75c840f5.png" width=50% height=50%/>
 
 </br>
@@ -54,7 +53,6 @@
 
 - 배우 상세 정보 조회
 
-<img src="https://user-images.githubusercontent.com/96460131/181405427-3c3bd392-0b58-44bc-9cfd-2211915fca4f.png" width=50% height=50%/>
 <img src="https://user-images.githubusercontent.com/96460131/181405461-0da44db9-0895-4b7b-9edb-a06e6f6e9525.png" width=50% height=50%/>
 
 </br>
@@ -76,20 +74,19 @@
 
 <img src="https://user-images.githubusercontent.com/96460131/181405039-38d2995f-c014-4ea9-8d4b-fe98ef7be75d.png" width=50% height=50%/>
 <img src="https://user-images.githubusercontent.com/96460131/181404295-54bcf549-ee29-4c22-9032-7d2b2f00ee2a.png" width=50% height=50%/>
-<img src="https://user-images.githubusercontent.com/96460131/181404323-035f4b55-1943-457a-8118-51f6f166950b.png" width=50% height=50%/>
-<img src="https://user-images.githubusercontent.com/96460131/181404330-86607144-a2f9-46fc-92a5-7ec9bb655cd4.png" width=50% height=50%/>
 
 </br>
 
 - 수정
 
 <img src="https://user-images.githubusercontent.com/96460131/181404351-9838b64d-d49e-4d59-b02e-7c5c9230fefa.png" width=50% height=50%/>
-<img src="https://user-images.githubusercontent.com/96460131/181404480-80b9e005-f59c-4b4a-ac55-3f8cd727b319.png" width=50% height=50%/>
+
 
 </br>
 
 - 삭제
-<img src="https://user-images.githubusercontent.com/96460131/181405185-39404565-16b2-4dae-9cfb-1a6827c20726.png" width=50% height=50%/>
-<img src="https://user-images.githubusercontent.com/96460131/181405237-4745f3a2-7b6b-4a18-a123-389fb2cf85f7.png" width=50% height=50%/>
+<img src="https://user-images.githubusercontent.com/96460131/181406011-027bef4f-93d3-4431-88a7-367e40b4fad4.png" width=50% height=50%/>
+<img src="https://user-images.githubusercontent.com/96460131/181406014-0a712467-77ab-4ce9-a6dd-7989d41adca6.png" width=50% height=50%/>
+
 
 
