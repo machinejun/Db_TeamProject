@@ -1,3 +1,4 @@
+
 ## MOVIEWIKI - 영화 포스팅 프로그램
 
 
@@ -39,51 +40,38 @@
 
 ### 화면 구성
 
+
 #### 클라이언트
 
-- 영화 목록 조회
-<img src="https://user-images.githubusercontent.com/96460131/181407328-086414d2-4c85-453f-ad12-eef60a21257f.png" width=50% height=50%/>
+- 영화, 배우 목록 각각 JList로 구현
+- 리스트의 항목 선택하여 영화, 배우에 대한 검색
+- 영화, 배우의 검색 결과에 대한 배우, 영화 정보 재검색
 
-</br>
+|영화 목록 조회|배우 목록 조회|
+|--|--|
+|![KakaoTalk_20220801_220912596_02](https://user-images.githubusercontent.com/96460131/182155924-c4c3ebc6-6749-4cda-b5d9-5dff437551b4.gif)|![KakaoTalk_20220801_220022223](https://user-images.githubusercontent.com/96460131/182153814-f3698504-28c5-41c7-a01f-56e972c24d5a.gif)|
 
-- 영화 상세 정보 조회
-<img src="https://user-images.githubusercontent.com/96460131/181407426-280ef530-0be6-4cf8-b642-5854cb54b4ba.png" width=50% height=50%/>
+<br/>
 
-- 배우 상세 정보 조회
-<img src="https://user-images.githubusercontent.com/96460131/181407704-8a192172-25b3-44c9-b638-31a8c3699832.png" width=50% height=50%/>
+- 클라이언트의 다중 접속
 
-
-</br>
-
-- 클라이언트 다중 접속
-<img src="https://user-images.githubusercontent.com/96460131/181407536-dbf637e2-1efc-47ea-9191-dc2efb2bd89a.png" width=50% height=50%/>
+<img src="https://user-images.githubusercontent.com/96460131/181407536-dbf637e2-1efc-47ea-9191-dc2efb2bd89a.png" width=70% height=70%/>
 
 </br>
 
 #### 관리자
-
-- 영화 목록 조회
-<img src="https://user-images.githubusercontent.com/96460131/181407637-9b3017dd-5831-47c9-939b-6917ecd8df78.png" width=50% height=50%/>
-
-</br>
-
-- 등록
-<img src="https://user-images.githubusercontent.com/96460131/181408241-9c01a25c-16a2-4491-a317-7e447e9018e5.png" width=50% height=50%/>
-<img src="https://user-images.githubusercontent.com/96460131/181408285-74d8a8c0-213b-4d30-bc1d-faa38149ed4e.png" width=50% height=50%/>
+- 영화 데이터 관리
 
 
-</br>
+|조회|등록|
+|--|--|
+|<img src="https://user-images.githubusercontent.com/96460131/181407637-9b3017dd-5831-47c9-939b-6917ecd8df78.png"/>|![KakaoTalk_20220801_220912596_01](https://user-images.githubusercontent.com/96460131/182156758-f0f493bf-e9bc-4997-bdb0-b6dbab2d500e.gif)|
 
-- 수정
-<img src="https://user-images.githubusercontent.com/96460131/181407968-625ede87-3dce-4a76-9a6e-30f832e4df1c.png" width=50% height=50%/>
+<br/>
+
+|수정|삭제|
+|--|--|
+|<img src="https://user-images.githubusercontent.com/96460131/181407968-625ede87-3dce-4a76-9a6e-30f832e4df1c.png"/>|<img src="https://user-images.githubusercontent.com/96460131/181408111-ab87ad1b-08de-443b-b775-410c705021bd.png"/>|
 
 
 </br>
-
-- 삭제
-<img src="https://user-images.githubusercontent.com/96460131/181408129-6f675ce3-747e-4c24-bc08-027363a895dc.png" width=50% height=50%/>
-<img src="https://user-images.githubusercontent.com/96460131/181408111-ab87ad1b-08de-443b-b775-410c705021bd.png" width=50% height=50%/>
-
-
-
-
